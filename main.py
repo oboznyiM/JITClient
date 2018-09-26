@@ -53,15 +53,15 @@ for i in range(len(dishes_list)):
 dishes_list_sort = dishes_list.copy()
 
 for j in range(len(dishes_list_sort)):
-    for i in range(len(dishes_list_sort) - 1):
-        if (dishes_list_sort[i]["cost"] > dishes_list_sort[i + 1]["cost"]):
-            t = dishes_list_sort[i]
-            dishes_list_sort[i] = dishes_list_sort[i + 1]
-            dishes_list_sort[i + 1] = t
+    for i in range(len(dishes_list_sort) - 2):
+        if (dishes_list_sort[i + 1]["cost"] > dishes_list_sort[i + 2]["cost"]):
+            t = dishes_list_sort[i + 1]
+            dishes_list_sort[i + 1] = dishes_list_sort[i + 2]
+            dishes_list_sort[i + 2] = t
             
 dishes_list_sort_back = dishes_list.copy()
-for i in range(len(dishes_list)):
-    dishes_list_sort_back[i] = dishes_list_sort[len(dishes_list)-i-1]
+for i in range(len(dishes_list) - 1):
+    dishes_list_sort_back[i + 1] = dishes_list_sort[len(dishes_list)-i-1]
             
 dish_blocks = [
     {

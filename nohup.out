@@ -1,0 +1,24 @@
+ * Serving Flask app "main" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+Traceback (most recent call last):
+  File "main.py", line 131, in <module>
+    app.run(host="0.0.0.0", port=80, debug=True)
+  File "/home/d34dstone/.local/lib/python3.6/site-packages/flask/app.py", line 943, in run
+    run_simple(host, port, self, **options)
+  File "/home/d34dstone/.local/lib/python3.6/site-packages/werkzeug/serving.py", line 795, in run_simple
+    s.bind(get_sockaddr(hostname, port, address_family))
+PermissionError: [Errno 13] Permission denied
+ * Serving Flask app "main" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 199-696-785
+127.0.0.1 - - [17/Aug/2018 14:42:16] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [17/Aug/2018 14:42:17] "GET /images/icons/favicon.png HTTP/1.1" 200 -

@@ -69,22 +69,22 @@ var update_dropdown = function()
         `
         <li class="header-cart-item">
             <div class="header-cart-item-img" onclick="delete_from_cart(${key})">
-				<img src="${API_URL}/public/${dishes_list[key].photo}" alt="IMG">
+				<img src="${API_URL}/public/${dishes_list[key - 1].photo}" alt="IMG">
 			</div>
 
 			<div class="header-cart-item-txt">
 				<a href="#" class="header-cart-item-name">
-					${dishes_list[key].title}
+					${dishes_list[key - 1].title}
 				</a>
 
                 <span class="header-cart-item-info">
-                    ${cookie[key]} x ₴${dishes_list[key].cost}
+                    ${cookie[key]} x ₴${dishes_list[key - 1].cost}
                 </span>
 			</div>
 		</li>
         `
 
-        summary += dishes_list[key-1].cost * cookie[key]
+        summary += dishes_list[key - 1].cost * cookie[key]
     });
 
     document.getElementById("cart-dropdown-summary").innerHTML = "Итог: ₴" + summary.toFixed(2)

@@ -4,7 +4,8 @@
 	<title>Cart</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<!--==================================M.O.=========================================================-->
+    <script type="text/javascript" src="/third-party-scripts/sending.js"></script>
 <!--==================================MY==OWN==SCRIPT==============================================-->
     <script type="text/javascript" src="/third-party-scripts/header_cart.js"></script>
 <!--===============================================================================================-->
@@ -144,20 +145,20 @@
 						</span>
 
 						<div class="rs2-select2 rs3-select2 rs4-select2 bo4 of-hidden w-size21 m-t-8 m-b-12">
-							<select class="selection-2" name="country">
+							<select id = "city" class="selection-2" name="country">
 								<option>Выберите город...</option>
-								<option>Харьков</option>
-								<option>Киев</option>
-								<option>Одесса</option>
+								<option value = "Харьков">Харьков</option>
+								<option value = "Киев">Киев</option>
+								<option value = "Одесса">Одесса</option>
 							</select>
 						</div>
 
 						<div class="size13 bo4 m-b-12">
-							<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="state" placeholder="Улица">
+							<input id = "street" class="sizefull s-text7 p-l-15 p-r-15" type="text" name="state" placeholder="Улица" >
 						</div>
 
 						<div class="size13 bo4 m-b-12">
-							<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="postcode" placeholder="Дом">
+							<input id = "house" class="sizefull s-text7 p-l-15 p-r-15" type="text" name="postcode" placeholder="Дом">
 						</div>
 
 						<div class="size13 bo4 m-b-12">
@@ -176,14 +177,14 @@
 						Итог:
 					</span>
 
-					<span class="m-text21 w-size20 w-full-sm">
-						₴???
-					</span>
+					<div id = "something" class="m-text21 w-size20 w-full-sm">
+				        500$
+					</div>
 				</div>
 
 				<div class="size15 trans-0-4">
 					<!-- Button -->
-					<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+					<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" onClick = "send_()">
 						Отправить заказ.
 					</button>
 				</div>

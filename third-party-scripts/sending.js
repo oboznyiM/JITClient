@@ -11,6 +11,24 @@ xhr.onload = function() {
 }
 xhr.send();
 
+console.log(dishes_list);
+
+var total = 0;
+
+
+var cookie = {}
+try {
+    cookie = JSON.parse(document.cookie);   
+} catch (err) {
+    null   
+}
+Object.keys(cookie).forEach(function(key) {
+    console.log(total);
+    total += dishes_list[key - 1].cost * cookie[key];
+});
+console.log(total);
+document.getElementById("something").innerHTML = total;
+
 function send_() {
 
     console.log("OZOZOZ1");
@@ -34,9 +52,13 @@ function send_() {
         order.push(dish);
     });
     var answer = new Object;
-    answer.address = "Kharkov Danilenko 10";
+    var street = document.getElementById("street").value;
+    var house = document.getElementById("house").value;
+    var sel = document.getElementById("city");
+    var city = sel.options[sel.selectedIndex].value;
+    answer.address = city + ' ' + street + ' ' + house;
     answer.dishes = order;
-    console.log("Danek pes");
+    console.log(answer.address);
     var xhr = new XMLHttpRequest();
     var url = "http://api.torianik.online:5000/make_order";
     xhr.open("POST", url, true);

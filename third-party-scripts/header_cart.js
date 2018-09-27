@@ -13,6 +13,26 @@ xhr.onload = function() {
 }
 xhr.send()
 
+function update_info() {
+
+var total = 0;
+
+var cookie = {}
+try {
+    cookie = JSON.parse(document.cookie);   
+} catch (err) {
+    null   
+}
+console.log(dishes_list);
+
+Object.keys(cookie).forEach(function(key) {
+    console.log(total);
+    total += dishes_list[key - 1].cost * cookie[key];
+});
+console.log(total);
+document.getElementById("something").innerHTML = total;
+}
+
 var add_to_cart = function(dish_id) 
 {
     try {

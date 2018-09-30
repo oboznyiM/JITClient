@@ -26,7 +26,7 @@ try {
 console.log(dishes_list);
 
 Object.keys(cookie).forEach(function(key) {
-    console.log(total);
+    console.log(key);
     total += dishes_list[key - 1].cost * cookie[key];
 });
 console.log(total);

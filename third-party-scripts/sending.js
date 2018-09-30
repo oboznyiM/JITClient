@@ -1,4 +1,17 @@
 
+var dishes_list = []
+
+var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+
+var xhr = new XHR();
+
+xhr.open('GET', 'http://api.torianik.online:5000/get/dishes', true);
+
+xhr.onload = function() {
+    dishes_list = JSON.parse(this.responseText).res;
+}
+xhr.send()
+
 function send_() {
 
     console.log("OZOZOZ1");
@@ -41,5 +54,6 @@ function send_() {
         }
     };
     var data = JSON.stringify(answer);
+    console.log(data);
     xhr.send(data);
 }

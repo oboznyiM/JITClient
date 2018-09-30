@@ -71,7 +71,7 @@ dish_blocks = [
     },
     {
         "title": "Закуски",
-        "label": "snacks",
+        "label": "garnish",
         "dishes": [5, 6, 7, 8, 9, 10]
     },
 ]
@@ -217,10 +217,10 @@ def fc_handle():
         current_page=page,
         page_number=ceil(len(dishes_list) / DISH_PER_PAGE))
 
-#for snacks
+#for garnish
 
-@app.route("/snacks")
-def snacks_handle():
+@app.route("/garnish")
+def garnish_handle():
     try:
         page = int(request.args.get("page"))
     except Exception as _:
@@ -234,7 +234,7 @@ def snacks_handle():
     i = 1
     j = 1
     while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
-        if dishes_list[i]["tags"][0] == "snacks":
+        if dishes_list[i]["tags"][0] == "garnish":
             new_dish = dishes_list[i]
             new_dish["id"] = i
             dish_page.append(new_dish)
@@ -244,7 +244,7 @@ def snacks_handle():
     i = 1
     j = 1
     while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
-        if dishes_list_sort_back[i]["tags"][0] == 'snacks':
+        if dishes_list_sort_back[i]["tags"][0] == 'garnish':
             new_dish_sort_back = dishes_list_sort_back[i]
             new_dish_sort_back["id"] = dishes_list_sort_back[i]["id"]
             dish_page_sort_back.append(new_dish_sort_back)
@@ -254,7 +254,7 @@ def snacks_handle():
     i = 1
     j = 1
     while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
-        if dishes_list_sort[i]["tags"][0] == "snacks":
+        if dishes_list_sort[i]["tags"][0] == "garnish":
             new_dish_sort = dishes_list_sort[i]
             new_dish_sort["id"] = dishes_list_sort[i]["id"]
             dish_page_sort.append(new_dish_sort)
@@ -266,7 +266,7 @@ def snacks_handle():
         dish_page = dish_page_sort
     if (sort_type == 3):
         dish_page = dish_page_sort_back
-    return render_template("snacks.html",
+    return render_template("garnish.html",
         api_url=API_URL,
         header=header_html,
         footer=footer_html,
@@ -311,7 +311,7 @@ def specials_handle():
     i = 1
     j = 1
     while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
-        if dishes_list_sort[i]["tags"][0] == "snacks":
+        if dishes_list_sort[i]["tags"][0] == "garnish":
             new_dish_sort = dishes_list_sort[i]
             new_dish_sort["id"] = dishes_list_sort[i]["id"]
             dish_page_sort.append(new_dish_sort)

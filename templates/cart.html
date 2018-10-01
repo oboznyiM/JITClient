@@ -4,10 +4,10 @@
 	<title>Cart</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--==================================M.O.=========================================================-->
-    <script type="text/javascript" src="/third-party-scripts/sending.js"></script>
 <!--==================================MY==OWN==SCRIPT==============================================-->
-    <script type="text/javascript" src="/third-party-scripts/header_cart.js"></script>
+	<script type="text/javascript" src="/third-party-scripts/header_cart.js"></script>
+    <script type="text/javascript" src="/third-party-scripts/sending.js"></script> <!--Maxim Oboznii-->
+	<script type="text/javascript" src="/third-party-scripts/cart.js"></script>
 <!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 <!--===============================================================================================-->
@@ -71,18 +71,18 @@
 							<td class="column-3">₴{{ dishes_list[dish_id].cost }}</td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
-									<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
+									<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2" onclick="increase_dish({{dish_id}}, -1);">
 										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 									</button>
 
 									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="{{in_cart_dishes[dish_id]}}">
 
-									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
+									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2" onclick="increase_dish({{dish_id}}, 1);">
 										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
 									</button>
 								</div>
 							</td>
-							<td class="column-5">₴{{ in_cart_dishes[dish_id] * dishes_list[dish_id].cost }}</td>
+							<td class="column-5" id="summary{{dish_id}}" >₴{{ in_cart_dishes[dish_id] * dishes_list[dish_id].cost }}</td>
 						</tr>
                         {% endfor %}
 					</table>

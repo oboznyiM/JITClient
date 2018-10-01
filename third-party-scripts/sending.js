@@ -30,7 +30,7 @@ function send_() {
     var order = [];
     Object.keys(cookie).forEach(function(key) {
         var dish = new Object;
-        dish.dish_id = key;
+        dish.dish_id = parseInt(key);
         dish.number = cookie[key];
         order.push(dish);
     });
@@ -48,6 +48,7 @@ function send_() {
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log("SERVER SENT A RESPONSE: " + xhr.responseText)
             var json = JSON.parse(xhr.responseText);
             console.log(json.res.id);
             alert(json.res.id);

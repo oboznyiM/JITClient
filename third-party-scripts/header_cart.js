@@ -13,6 +13,7 @@ xhr.onload = function() {
 }
 xhr.send()
 
+/*
 function update_info() {
  
     console.log("ozo");
@@ -46,9 +47,9 @@ var set_dish = function(dish_id, number) {
         cookie[dish_id] = Number(number);
     document.cookie = JSON.stringify(cookie)
     update_dropdown();
-    window.location.reload();
-    
+    window.location.reload();   
 }
+*/
 
 var add_to_cart = function(dish_id) 
 {
@@ -69,7 +70,7 @@ var add_to_cart = function(dish_id)
     update_dropdown()
 }
 
-function increase_dish(dish_id, number)
+/*function increase_dish(dish_id, number)
 {
     //print(dish_id + " : " + number)
     console.log(dish_id);
@@ -80,6 +81,7 @@ function increase_dish(dish_id, number)
     console.log(1);
     window.location.reload();
 }
+
 
 var delete_dish = function(dish_id) {
     try {
@@ -94,6 +96,7 @@ var delete_dish = function(dish_id) {
     document.cookie = JSON.stringify(cookie)
     update_dropdown();
 }
+*/
 
 var delete_from_cart = function(dish_id)
 {

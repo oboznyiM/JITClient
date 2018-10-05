@@ -112,7 +112,8 @@ def cart_handle():
         in_cart_dishes=in_cart,
         dishes_list=dishes_list,
         header=header_html,
-        footer=footer_html)
+        footer=footer_html,
+        show_cart_icon=False)
 
 @app.route("/product")
 def product_handle():

@@ -38,6 +38,7 @@
 <body class="animsition" onload = "update_info()">
 
 	<!-- Header -->
+<!-- Header -->
 <header class="header1">
     <!-- Header desktop -->
     <div class="container-menu-header">
@@ -106,36 +107,6 @@
                 </a>
 
                 <span class="linedivide1"></span>
-
-                <div class="header-wrapicon2">
-                    <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-                    <span class="header-icons-noti" id="cart-size">0</span>
-
-                    <!-- Header cart noti -->
-                    <div class="header-cart header-dropdown">
-                        <ul class="header-cart-wrapitem" id="cart-dropdown-main">
-                        </ul>
-
-                        <div class="header-cart-total" id="cart-dropdown-summary">
-                        </div>
-
-                        <div class="header-cart-buttons">
-                            <div class="header-cart-wrapbtn">
-                                <!-- Button -->
-                                <a href="cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                    Корзина
-                                </a>
-                            </div>
-
-                            <div class="header-cart-wrapbtn">
-                                <!-- Button -->
-                                <a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                    К Оплате
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -156,36 +127,6 @@
                 </a>
 
                 <span class="linedivide2"></span>
-
-                <div class="header-wrapicon2">
-                    <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-                    <span class="header-icons-noti">0</span>
-
-                    <!-- Header cart noti -->
-                    <div class="header-cart header-dropdown">
-                        <ul class="header-cart-wrapitem" id="cart-dropdown-main_">      
-                        </ul>
-
-                        <div class="header-cart-total" id="cart-dropdown-summary_">
-                        </div>
-
-                        <div class="header-cart-buttons">
-                            <div class="header-cart-wrapbtn">
-                                <!-- Button -->
-                                <a href="cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                    К Корзине
-                                </a>
-                            </div>
-
-                            <div class="header-cart-wrapbtn">
-                                <!-- Button -->
-                                <a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                    Расплатиться
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -269,6 +210,7 @@
     </div>
 </header>
 
+
 	<!-- Title Page -->
 	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-01.jpg);">
 		<h2 class="l-text2 t-center">
@@ -306,7 +248,7 @@
 										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 									</button>
                                     
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="{{in_cart_dishes[dish_id]}}" onchange="set_dish({{dish_id}}, this.value)">
+									<input class="size8 m-text18 t-center num-product" id="number_{{dish_id}}" type="number" name="num-product1" value="{{in_cart_dishes[dish_id]}}" onchange="set_dish({{dish_id}}, this.value)">
 
 									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2" onclick="increase_dish({{dish_id}}, 1);">
 										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
@@ -409,7 +351,7 @@
 						Итог:
 					</span>
 
-					<div id = "something" class="m-text21 w-size20 w-full-sm">
+					<div id = "summary" class="m-text21 w-size20 w-full-sm">
 				        
 					</div>
 				</div>

@@ -76,7 +76,7 @@ dish_blocks = [
     },
 ]
 
-favorites = [1, 2, 3]
+favorites = [1, 2, 3, 4, 5]
 
 with open("templates/components/header.html") as fin:
     header_html = Markup(fin.read())

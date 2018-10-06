@@ -95,11 +95,15 @@ def cart_handle():
             in_cart_new[int(key)] = in_cart[key]
         in_cart = in_cart_new
     except Exception as _:
-        in_cart = loads(list(request.cookies.keys())[1])
-        in_cart_new = {}
-        for key in in_cart.keys():
-            in_cart_new[int(key)] = in_cart[key]
-        in_cart = in_cart_new
+        try:
+            in_cart = loads(list(request.cookies.keys())[1])
+            in_cart_new = {}
+            for key in in_cart.keys():
+                in_cart_new[int(key)] = in_cart[key]
+            in_cart = in_cart_new
+        except Exception as _:
+            pass
+
     
     print(in_cart)
     return render_template("cart.html",

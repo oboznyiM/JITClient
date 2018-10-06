@@ -133,7 +133,7 @@ var update_dropdown = function()
         console.log(key)
         console.log(dishes_list)
         dropdown.innerHTML +=
-        `й
+        `
         <li class="header-cart-item">
             <div class="header-cart-item-img" onclick="delete_from_cart(${key})">
 				<img src="${API_URL}/public/${dishes_list[key - 1].photo}" alt="IMG">

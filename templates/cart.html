@@ -42,25 +42,6 @@
 <header class="header1">
     <!-- Header desktop -->
     <div class="container-menu-header">
-        <div class="topbar">
-            <div class="topbar-social">
-                <a href="#" class="topbar-social-item fa fa-facebook"></a>
-                <a href="#" class="topbar-social-item fa fa-instagram"></a>
-                <a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
-                <a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
-                <a href="#" class="topbar-social-item fa fa-youtube-play"></a>
-            </div>
-
-            <span class="topbar-child1">
-                Lorem ipsums dolor sit amet
-            </span>
-
-            <div class="topbar-child2">
-                <span class="topbar-email">
-                    torianik.george@tutanota.com
-                </span>
-            </div>
-        </div>
 
         <div class="wrap_header">
             <!-- Logo -->
@@ -72,15 +53,6 @@
             <div class="wrap_menu">
                 <nav class="menu">
                     <ul class="main_menu">
-                        <li>
-                            <a href="/">Домашняя страница</a>
-                            <ul class="sub_menu">
-                                <li><a href="/">Покупатель</a></li>
-                                <li><a href="home-02.html">Администратор</a></li>
-                                <li><a href="home-03.html">Менеджер</a></li>
-                            </ul>
-                        </li>
-
                         <li>
                             <a href="product">Каталог</a>
                         </li>
@@ -101,13 +73,6 @@
             </div>
 
             <!-- Header Icon -->
-            <div class="header-icons">
-                <a href="#" class="header-wrapicon1 dis-block">
-                    <img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-                </a>
-
-                <span class="linedivide1"></span>
-            </div>
         </div>
     </div>
 
@@ -210,14 +175,6 @@
     </div>
 </header>
 
-
-	<!-- Title Page -->
-	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-01.jpg);">
-		<h2 class="l-text2 t-center">
-			Cart
-		</h2>
-	</section>
-
 	<!-- Cart -->
 	<section class="cart bgwhite p-t-70 p-b-100">
 		<div class="container">
@@ -248,7 +205,7 @@
 										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 									</button>
                                     
-									<input class="size8 m-text18 t-center num-product" id="number_{{dish_id}}" type="number" name="num-product1" value="{{in_cart_dishes[dish_id]}}" onchange="set_dish({{dish_id}}, this.value)">
+									<input class="size8 m-text18 t-center num-product" id="number_of{{dish_id}}" type="number" name="num-product1" value="{{in_cart_dishes[dish_id]}}" onchange="set_dish({{dish_id}}, this.value)">
 
 									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2" onclick="increase_dish({{dish_id}}, 1);">
 										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
@@ -260,28 +217,6 @@
 						</tr>
                         {% endfor %}
 					</table>
-				</div>
-			</div>
-
-			<div class="flex-w flex-sb-m p-t-25 p-b-25 bo8 p-l-35 p-r-60 p-lr-15-sm">
-				<div class="flex-w flex-m w-full-sm">
-					<div class="size11 bo4 m-r-10">
-						<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="coupon-code" placeholder="Введите промо-код">
-					</div>
-
-					<div class="size12 trans-0-4 m-t-10 m-b-10 m-r-10">
-						<!-- Button -->
-						<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-							Промо-код
-						</button>
-					</div>
-				</div>
-
-				<div class="size10 trans-0-4 m-t-10 m-b-10">
-					<!-- Button -->
-					<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" onclick="document.location='index.html'">
-						Продолжить покупки
-					</button>
 				</div>
 			</div>
 
@@ -297,8 +232,7 @@
 						Сумма без доставки:
 					</span>
 
-					<span class="m-text21 w-size20 w-full-sm">
-						₴???
+					<span class="m-text21 w-size20 w-full-sm" id="summary">
 					</span>
 				</div>
 
@@ -351,9 +285,7 @@
 						Итог:
 					</span>
 
-					<div id = "summary" class="m-text21 w-size20 w-full-sm">
-				        
-					</div>
+					<div id = "summary-d" class="m-text21 w-size20 w-full-sm"></div>
 				</div>
 
 				<div class="size15 trans-0-4">

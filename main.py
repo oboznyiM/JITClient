@@ -84,29 +84,24 @@ with open("templates/components/header.html") as fin:
 with open("templates/components/footer.html") as fin:
     footer_html = Markup(fin.read())
 
-@app.route("/")
-def index_handle():
-    dishes_list_json=dumps(dishes_list)
-    return render_template("index.html",
-        api_url=API_URL,
-        favorites=favorites,
-        dishes_list=dishes_list, 
-        dishes_list_json=dishes_list_json,
-        header=header_html,
-        footer=footer_html)
-
 @app.route("/cart")
 def cart_handle():
     in_cart = {}
     try:
+        print(request.cookies)
         in_cart = loads(list(request.cookies.keys())[0])
         in_cart_new = {}
         for key in in_cart.keys():
             in_cart_new[int(key)] = in_cart[key]
         in_cart = in_cart_new
     except Exception as _:
-        pass
+        in_cart = loads(list(request.cookies.keys())[1])
+        in_cart_new = {}
+        for key in in_cart.keys():
+            in_cart_new[int(key)] = in_cart[key]
+        in_cart = in_cart_new
     
+    print(in_cart)
     return render_template("cart.html",
         api_url=API_URL,
         in_cart_dishes=in_cart,
@@ -445,6 +440,11 @@ def beverages_handle():
         dish_page=dish_page,
         current_page=page,
         page_number=ceil(len(dishes_list) / DISH_PER_PAGE))
+
+
+@app.route("/")
+def index_handle():
+    return product_handle()
 
 @app.route("/contact")
 def contact_handle():

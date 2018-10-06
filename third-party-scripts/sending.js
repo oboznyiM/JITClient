@@ -12,16 +12,18 @@ xhr.onload = function() {
 }
 xhr.send()
 
-function send_() {
+window.addEventListener("load", function()
+{
+    update_cart();
+})
 
-    console.log("OZOZOZ1");
+function send_() {
     var cookie = {}
     try {
         cookie = JSON.parse(document.cookie);   
     } catch (err) {
         null   
     }
-    console.log("OZOOZ2");
     if(Object.keys(cookie).length == 0)
     {
         alert("Ваша корзина пуста");

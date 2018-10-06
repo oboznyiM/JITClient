@@ -65,6 +65,7 @@ function update_cart()
         return;
     }
     summary = document.getElementById("summary")
+    summary_d = document.getElementById("summary-d")
     summaries = {}
     numbers_of = {}
     dish_ids = Object.keys(cookie)
@@ -85,6 +86,7 @@ function update_cart()
     }
 
     summary.innerHTML = sum.toFixed(2)
+    summary_d.innerHTML = (sum * 1.1).toFixed(2)
 }
 
 var delete_dish = function(dish_id) {

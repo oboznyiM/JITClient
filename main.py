@@ -71,7 +71,7 @@ dish_blocks = [
     },
     {
         "title": "Закуски",
-        "label": "garnish",
+        "label": "main course",
         "dishes": [5, 6, 7, 8, 9, 10]
     },
 ]
@@ -217,10 +217,10 @@ def fc_handle():
         current_page=page,
         page_number=ceil(len(dishes_list) / DISH_PER_PAGE))
 
-#for garnish
+#for main course
 
-@app.route("/garnish")
-def garnish_handle():
+@app.route("/main_courses")
+def main_course_handle():
     try:
         page = int(request.args.get("page"))
     except Exception as _:
@@ -234,7 +234,7 @@ def garnish_handle():
     i = 1
     j = 1
     while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
-        if dishes_list[i]["tags"][0] == "garnish":
+        if dishes_list[i]["tags"][0] == "main course":
             new_dish = dishes_list[i]
             new_dish["id"] = i
             dish_page.append(new_dish)
@@ -244,7 +244,7 @@ def garnish_handle():
     i = 1
     j = 1
     while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
-        if dishes_list_sort_back[i]["tags"][0] == 'garnish':
+        if dishes_list_sort_back[i]["tags"][0] == 'main course':
             new_dish_sort_back = dishes_list_sort_back[i]
             new_dish_sort_back["id"] = dishes_list_sort_back[i]["id"]
             dish_page_sort_back.append(new_dish_sort_back)
@@ -254,7 +254,7 @@ def garnish_handle():
     i = 1
     j = 1
     while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
-        if dishes_list_sort[i]["tags"][0] == "garnish":
+        if dishes_list_sort[i]["tags"][0] == "main course":
             new_dish_sort = dishes_list_sort[i]
             new_dish_sort["id"] = dishes_list_sort[i]["id"]
             dish_page_sort.append(new_dish_sort)
@@ -266,7 +266,7 @@ def garnish_handle():
         dish_page = dish_page_sort
     if (sort_type == 3):
         dish_page = dish_page_sort_back
-    return render_template("garnish.html",
+    return render_template("main_courses.html",
         api_url=API_URL,
         header=header_html,
         footer=footer_html,
@@ -274,10 +274,10 @@ def garnish_handle():
         current_page=page,
         page_number=ceil(len(dishes_list) / DISH_PER_PAGE))
 
-#for specials
+#for salads
 
-@app.route("/specials")
-def specials_handle():
+@app.route("/salads")
+def salads_handle():
     try:
         page = int(request.args.get("page"))
     except Exception as _:
@@ -291,7 +291,7 @@ def specials_handle():
     i = 1
     j = 1
     while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
-        if dishes_list[i]["tags"][0] == "special":
+        if dishes_list[i]["tags"][0] == "salad":
             new_dish = dishes_list[i]
             new_dish["id"] = i
             dish_page.append(new_dish)
@@ -301,7 +301,7 @@ def specials_handle():
     i = 1
     j = 1
     while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
-        if dishes_list_sort_back[i]["tags"][0] == 'special':
+        if dishes_list_sort_back[i]["tags"][0] == 'salad':
             new_dish_sort_back = dishes_list_sort_back[i]
             new_dish_sort_back["id"] = dishes_list_sort_back[i]["id"]
             dish_page_sort_back.append(new_dish_sort_back)
@@ -311,7 +311,7 @@ def specials_handle():
     i = 1
     j = 1
     while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
-        if dishes_list_sort[i]["tags"][0] == "garnish":
+        if dishes_list_sort[i]["tags"][0] == "salad":
             new_dish_sort = dishes_list_sort[i]
             new_dish_sort["id"] = dishes_list_sort[i]["id"]
             dish_page_sort.append(new_dish_sort)
@@ -323,13 +323,72 @@ def specials_handle():
         dish_page = dish_page_sort
     if (sort_type == 3):
         dish_page = dish_page_sort_back
-    return render_template("specials.html",
+    return render_template("salads.html",
         api_url=API_URL,
         header=header_html,
         footer=footer_html,
         dish_page=dish_page,
         current_page=page,
         page_number=ceil(len(dishes_list) / DISH_PER_PAGE))
+
+
+#for salads
+
+@app.route("/snacks")
+def snacks_handle():
+    try:
+        page = int(request.args.get("page"))
+    except Exception as _:
+        page = 1
+    dish_page = []
+    dish_page_sort = []
+    dish_page_sort_back = []
+    DISH_PER_PAGE = 10000
+
+    start_page = (page - 1) * DISH_PER_PAGE
+    i = 1
+    j = 1
+    while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
+        if dishes_list[i]["tags"][0] == "snack":
+            new_dish = dishes_list[i]
+            new_dish["id"] = i
+            dish_page.append(new_dish)
+            j += 1
+        i += 1
+    
+    i = 1
+    j = 1
+    while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
+        if dishes_list_sort_back[i]["tags"][0] == 'snack':
+            new_dish_sort_back = dishes_list_sort_back[i]
+            new_dish_sort_back["id"] = dishes_list_sort_back[i]["id"]
+            dish_page_sort_back.append(new_dish_sort_back)
+            j += 1
+        i += 1
+    
+    i = 1
+    j = 1
+    while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
+        if dishes_list_sort[i]["tags"][0] == "snack":
+            new_dish_sort = dishes_list_sort[i]
+            new_dish_sort["id"] = dishes_list_sort[i]["id"]
+            dish_page_sort.append(new_dish_sort)
+            j += 1
+        i += 1
+        
+    sort_type = request.args.get("type_sort", default = 0, type = int)
+    if (sort_type == 2):
+        dish_page = dish_page_sort
+    if (sort_type == 3):
+        dish_page = dish_page_sort_back
+    return render_template("snacks.html",
+        api_url=API_URL,
+        header=header_html,
+        footer=footer_html,
+        dish_page=dish_page,
+        current_page=page,
+        page_number=ceil(len(dishes_list) / DISH_PER_PAGE))
+
 
 #for desserts
 
@@ -388,10 +447,10 @@ def desserts_handle():
         current_page=page,
         page_number=ceil(len(dishes_list) / DISH_PER_PAGE))
 
-#for beverages
+#for non_beverages
 
-@app.route("/beverages")
-def beverages_handle():
+@app.route("/non_beverages")
+def non_beverages_handle():
     try:
         page = int(request.args.get("page"))
     except Exception as _:
@@ -405,7 +464,7 @@ def beverages_handle():
     i = 1
     j = 1
     while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
-        if dishes_list[i]["tags"][0] == "beverage":
+        if dishes_list[i]["tags"][0] == "nonalcoholic drink":
             new_dish = dishes_list[i]
             new_dish["id"] = i
             dish_page.append(new_dish)
@@ -415,7 +474,7 @@ def beverages_handle():
     i = 1
     j = 1
     while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
-        if dishes_list_sort_back[i]["tags"][0] == 'beverage':
+        if dishes_list_sort_back[i]["tags"][0] == 'nonalcoholic drink':
             new_dish_sort_back = dishes_list_sort_back[i]
             new_dish_sort_back["id"] = dishes_list_sort_back[i]["id"]
             dish_page_sort_back.append(new_dish_sort_back)
@@ -425,7 +484,7 @@ def beverages_handle():
     i = 1
     j = 1
     while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
-        if dishes_list_sort[i]["tags"][0] == "beverage":
+        if dishes_list_sort[i]["tags"][0] == "nonalcoholic drink":
             new_dish_sort = dishes_list_sort[i]
             new_dish_sort["id"] = dishes_list_sort[i]["id"]
             dish_page_sort.append(new_dish_sort)
@@ -437,7 +496,64 @@ def beverages_handle():
         dish_page = dish_page_sort
     if (sort_type == 3):
         dish_page = dish_page_sort_back
-    return render_template("beverages.html",
+    return render_template("non_beverages.html",
+        api_url=API_URL,
+        header=header_html,
+        footer=footer_html,
+        dish_page=dish_page,
+        current_page=page,
+        page_number=ceil(len(dishes_list) / DISH_PER_PAGE))
+
+#for alc_beverages
+
+@app.route("/alc_beverages")
+def alc_beverages_handle():
+    try:
+        page = int(request.args.get("page"))
+    except Exception as _:
+        page = 1
+    dish_page = []
+    dish_page_sort = []
+    dish_page_sort_back = []
+    DISH_PER_PAGE = 10000
+
+    start_page = (page - 1) * DISH_PER_PAGE
+    i = 1
+    j = 1
+    while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
+        if dishes_list[i]["tags"][0] == "alcoholic drink":
+            new_dish = dishes_list[i]
+            new_dish["id"] = i
+            dish_page.append(new_dish)
+            j += 1
+        i += 1
+    
+    i = 1
+    j = 1
+    while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
+        if dishes_list_sort_back[i]["tags"][0] == 'alcoholic drink':
+            new_dish_sort_back = dishes_list_sort_back[i]
+            new_dish_sort_back["id"] = dishes_list_sort_back[i]["id"]
+            dish_page_sort_back.append(new_dish_sort_back)
+            j += 1
+        i += 1
+    
+    i = 1
+    j = 1
+    while j < DISH_PER_PAGE and i + start_page < len(dishes_list):
+        if dishes_list_sort[i]["tags"][0] == "alcoholic drink":
+            new_dish_sort = dishes_list_sort[i]
+            new_dish_sort["id"] = dishes_list_sort[i]["id"]
+            dish_page_sort.append(new_dish_sort)
+            j += 1
+        i += 1
+        
+    sort_type = request.args.get("type_sort", default = 0, type = int)
+    if (sort_type == 2):
+        dish_page = dish_page_sort
+    if (sort_type == 3):
+        dish_page = dish_page_sort_back
+    return render_template("alc_beverages.html",
         api_url=API_URL,
         header=header_html,
         footer=footer_html,

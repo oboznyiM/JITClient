@@ -566,10 +566,12 @@ def alc_beverages_handle():
 def index_handle():
     return product_handle()
 
+"""
 @app.route("/contact")
 def contact_handle():
     return render_template("contact.html",
         header = header_html,
         footer = footer_html)
+"""
 
 app.run(host="0.0.0.0", port=80, debug=True)

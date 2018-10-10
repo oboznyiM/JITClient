@@ -41,6 +41,18 @@ function send_() {
     var house = document.getElementById("house").value;
     var sel = document.getElementById("city");
     var city = sel.options[sel.selectedIndex].value;
+    if (city == "Выберите город...") {
+        alert("Введите город");
+        return;
+    }
+    if (street == "") {
+        alert("Введите улицу");
+        return;
+    }
+    if (house == "") {
+        alert("Введите дом");
+        return;
+    }
     answer.address = city + ' ' + street + ' ' + house;
     answer.dishes = order;
     console.log(answer.address);

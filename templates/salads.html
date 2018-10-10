@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Beverages</title>
+	<title>Салаты</title>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script type="text/javascript" src="/third-party-scripts/sort_script.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1"
 <!--==================================MY==OWN==SCRIPT==============================================-->
 	<script type="text/javascript" src="/third-party-scripts/header_cart.js"></script>
 <!--===============================================================================================-->
@@ -38,18 +36,157 @@
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
-	{{header}}
-	<!-- Title Page -->
-	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/heading-pages-02.jpg);">
-		<h2 class="l-text2 t-center">
-			Women
-		</h2>
-		<p class="m-text13 t-center">
-			New Arrivals Women Collection 2018
-		</p>
-	</section>
+	<!-- Header -->
+<header class="header1">
+    <!-- Header desktop -->
+    <div class="container-menu-header">
 
+        <div class="wrap_header">
+            <!-- Logo -->
+            <a href="/" class="logo">
+                <img src="images/icons/logo.png" alt="IMG-LOGO">
+            </a>
 
+            <!-- Menu -->
+            <div class="wrap_menu">
+                <nav class="menu">
+                    <ul class="main_menu">
+                        <li>
+                            <a href="product">Каталог</a>
+                        </li>
+
+                        <li>
+                            <a href="cart">Корзина</a>
+                        </li>
+
+                        <li>
+                            <a href="about">О Нас</a>
+                        </li>
+
+                        <li>
+                            <a href="contact">Контакты</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Header Icon -->
+            <div class="header-icons">
+
+                <div class="header-wrapicon2">
+                    <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+                    <span class="header-icons-noti" id="cart-size">0</span>
+
+                    <!-- Header cart noti -->
+                    <div class="header-cart header-dropdown">
+                        <ul class="header-cart-wrapitem" id="cart-dropdown-main">
+                        </ul>
+
+                        <div class="header-cart-total" id="cart-dropdown-summary">
+                        </div>
+
+                        <div class="header-cart-buttons">
+                            <div class="header-cart-wrapbtn">
+                                <!-- Button -->
+                                <a href="cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                    Корзина
+                                </a>
+                            </div>
+
+                            <div class="header-cart-wrapbtn">
+                                <!-- Button -->
+                                <a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                    К Оплате
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Mobile -->
+    <div class="wrap_header_mobile">
+        <!-- Logo moblie -->
+        <a href="/" class="logo-mobile">
+            <img src="images/icons/logo.png" alt="IMG-LOGO">
+        </a>
+
+        <!-- Button show menu -->
+        <div class="btn-show-menu">
+            <!-- Header Icon mobile -->
+            <div class="header-icons-mobile">
+                <a href="#" class="header-wrapicon1 dis-block">
+                    <img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+                </a>
+
+                <span class="linedivide2"></span>
+
+                <div class="header-wrapicon2">
+                    <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+                    <span class="header-icons-noti">0</span>
+
+                    <!-- Header cart noti -->
+                    <div class="header-cart header-dropdown">
+                        <ul class="header-cart-wrapitem" id="cart-dropdown-main_">      
+                        </ul>
+
+                        <div class="header-cart-total" id="cart-dropdown-summary_">
+                        </div>
+
+                        <div class="header-cart-buttons">
+                            <div class="header-cart-wrapbtn">
+                                <!-- Button -->
+                                <a href="cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                    К Корзине
+                                </a>
+                            </div>
+
+                            <div class="header-cart-wrapbtn">
+                                <!-- Button -->
+                                <a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                    Расплатиться
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Mobile -->
+ <div class="wrap-side-menu" >
+        <nav class="side-menu">
+            <ul class="main-menu">
+
+                
+                <li class="item-menu-mobile">
+                    <a href="product">Каталог</a>
+                </li>
+
+                <li class="item-menu-mobile">
+                    <a href="cart">Корзина</a>
+                </li>
+
+                <li class="item-menu-mobile">
+                    <a href="about">О нас</a>
+                </li>
+
+                <li class="item-menu-mobile">
+                    <a href="contact">Контакты</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
 	<!-- Content page -->
 	<section class="bgwhite p-t-55 p-b-65">
 		<div class="container">
@@ -58,125 +195,58 @@
 					<div class="leftbar p-r-20 p-r-0-sm">
 						<!--  -->
 						<h4 class="m-text14 p-b-7">
-							Categories
+							Категории
 						</h4>
 
 						<ul class="p-b-54">
 							<li class="p-t-4">
 								<a href="/product" class="s-text13 active1">
-                                    All
+                                    Меню
 								</a>
 							</li>
 
 							<li class="p-t-4">
 								<a href="/first_courses" class="s-text13">
-                                    First courses
+									Первые блюда
 								</a>
 							</li>
 
 							<li class="p-t-4">
-								<a href="/snacks" class="s-text13">
-                                    Snacks
+								<a href="/main_courses" class="s-text13">
+									Основные блюда
 								</a>
 							</li>
 
 							<li class="p-t-4">
-								<a href="/specials" class="s-text13">
-                                    Specials
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="/desserts" class="s-text13">
-                                    Desserts
+								<a href="#" class="s-text13">
+                                    <b>Салаты</b>
 								</a>
 							</li>
                             <li class="p-t-4">
-								<a href="#" class="s-text13">
-                                    <b>Beverages</b>
+								<a href="/snacks" class="s-text13">
+									Закуски
+								</a>
+							</li>
+							<li class="p-t-4">
+								<a href="/desserts" class="s-text13">
+									Дессерты
+								</a>
+							</li>
+                            <li class="p-t-4">
+								<a href="/non_beverages" class="s-text13">
+									Безалкогольные напитки
+								</a>
+							</li>
+                            <li class="p-t-4">
+								<a href="/alc_beverages" class="s-text13">
+									Алкогольные напитки
 								</a>
 							</li>
                             
+                            
 						</ul>
 
-						<!--  -->
-						<h4 class="m-text14 p-b-32">
-							Filters
-						</h4>
-
-						<div class="filter-price p-t-22 p-b-50 bo3">
-							<div class="m-text15 p-b-17">
-								Price
-							</div>
-
-							<div class="wra-filter-bar">
-								<div id="filter-bar"></div>
-							</div>
-
-							<div class="flex-sb-m flex-w p-t-16">
-								<div class="w-size11">
-									<!-- Button -->
-									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
-										Filter
-									</button>
-								</div>
-
-								<div class="s-text3 p-t-10 p-b-10">
-									Range: $<span id="value-lower">610</span> - $<span id="value-upper">980</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="filter-color p-t-22 p-b-50 bo3">
-							<div class="m-text15 p-b-12">
-								Color
-							</div>
-
-							<ul class="flex-w">
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter1" type="checkbox" name="color-filter1">
-									<label class="color-filter color-filter1" for="color-filter1"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter2" type="checkbox" name="color-filter2">
-									<label class="color-filter color-filter2" for="color-filter2"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter3" type="checkbox" name="color-filter3">
-									<label class="color-filter color-filter3" for="color-filter3"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter4" type="checkbox" name="color-filter4">
-									<label class="color-filter color-filter4" for="color-filter4"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter5" type="checkbox" name="color-filter5">
-									<label class="color-filter color-filter5" for="color-filter5"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter6" type="checkbox" name="color-filter6">
-									<label class="color-filter color-filter6" for="color-filter6"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter7" type="checkbox" name="color-filter7">
-									<label class="color-filter color-filter7" for="color-filter7"></label>
-								</li>
-							</ul>
-						</div>
-
-						<div class="search-product pos-relative bo4 of-hidden">
-							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products...">
-
-							<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
-								<i class="fs-12 fa fa-search" aria-hidden="true"></i>
-							</button>
-						</div>
+						
 					</div>
 				</div>
 
@@ -188,31 +258,15 @@
 								<form action="">
                                     <fieldset>
                                         <select class="selection-2" name="sorting" onchange="document.location=this.options[this.selectedIndex].value">
-                                            <option value = "/beverages?type_sort=0">Default Sorting</option>
-                                            <option value = "/beverages">Popularity</option>
-                                            <option value = "/beverages?type_sort=2">Price: low to high</option>
-									        <option value = "/beverages?type_sort=3">Price: high to low</option>
+                                            <option value = "/product?type_sort=2">Default Sorting</option>
+                                            <option value = "/product">Popularity</option>
+                                            <option value = "/product?type_sort=2">Price: low to high</option>
+									        <option value = "/product?type_sort=3">Price: high to low</option>
                                         </select>
                                     </fieldset>
                                 </form>
                             </div>
-
-							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-								<select class="selection-2" name="sorting">
-									<option>Price</option>
-									<option>$0.00 - $50.00</option>
-									<option>$50.00 - $100.00</option>
-									<option>$100.00 - $150.00</option>
-									<option>$150.00 - $200.00</option>
-									<option>$200.00+</option>
-
-								</select>
-							</div>
 						</div>
-
-						<span class="s-text8 p-t-5 p-b-5">
-							Showing 1–12 of 16 results
-						</span>
 					</div>
 
 					<!-- Product -->
@@ -232,8 +286,9 @@
 	
 											<div class="block2-btn-addcart w-size1 trans-0-4">
 												<!-- Button -->
-												<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="add_to_cart({{dish.id}})">
-													Add to Cart
+												
+                                                <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="add_to_cart({{dish.id}})">
+													Добавить в корзину
 												</button>
 											</div>
 										</div>
@@ -250,16 +305,6 @@
 									</div>
 								</div>
 							</div>
-						{% endfor %}
-					<!-- Pagination -->
-					<div class="pagination flex-m flex-w p-t-26" id="pages-bar">
-						{% for i in range(page_number) %}
-							{% if i + 1 == current_page %}
-							<a href="beverages?page={{i + 1}}" class="item-pagination flex-c-m trans-0-4 active-pagination">{{i + 1}}</a>
-							{% endif %}
-							{% if i + 1 != current_page %}
-							<a href="beverages?page={{i + 1}}" class="item-pagination flex-c-m trans-0-4">{{i + 1}}</a>
-							{% endif %}
 						{% endfor %}
 					</div>
 				</div>

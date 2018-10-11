@@ -39,6 +39,8 @@ function send_() {
     var answer = new Object;
     var street = document.getElementById("street").value;
     var house = document.getElementById("house").value;
+    var mobile = document.getElementById("mobile").value;
+    var name = document.getElementById("name").value;
     var sel = document.getElementById("city");
     var city = sel.options[sel.selectedIndex].value;
     if (city == "Выберите город...") {
@@ -49,11 +51,41 @@ function send_() {
         alert("Введите улицу");
         return;
     }
+    var reg_street = /(^[а-яё]+$)/i;
+    if (reg_street.test(street) == false) {
+        alert("Вы неправильно ввели улицу");
+        return;
+    }
     if (house == "") {
         alert("Введите дом");
         return;
     }
+    var reg_house = /^[0-9]+\s?-?\s?[а-яё]?$/i
+    if (reg_house.test(house) == false) {
+        alert("Вы неправильно ввели номер дома");
+        return;
+    }
+    if (mobile == "") {
+        alert("Введите мобильный телефон");
+        return;
+    }
+    var reg_mobile = /^\+?[0-9]+$/i
+    if (reg_mobile.test(mobile) == false) {
+        alert("Вы неправильно ввели номер телефона");
+        return;
+    }
+    if (name == "") {
+        alert("Введите имя");
+        return;
+    }
+    var reg_name = /^[а-яё]+/i;
+    if (reg_name.test(name) == false) {
+        alert("Вы неправильно ввели имя");
+        return;
+    }
     answer.address = city + ' ' + street + ' ' + house;
+    answer.phone = mobile;
+    answer.name = name;
     answer.dishes = order;
     console.log(answer.address);
     var xhr = new XMLHttpRequest();
@@ -71,4 +103,8 @@ function send_() {
     var data = JSON.stringify(answer);
     console.log(data);
     xhr.send(data);
+    console.log(1);
+    alert("Ваш заказ принят")
+    //document.cookie = [];
+    ///document.location.href = "/";
 }

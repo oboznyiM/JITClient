@@ -1,17 +1,5 @@
 API_URL = "http://api.torianik.online:5000"
 
-var dishes_list = []
-
-var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
-
-var xhr = new XHR();
-
-xhr.open('GET', 'http://api.torianik.online:5000/get/dishes', true);
-
-xhr.onload = function() {
-    dishes_list = JSON.parse(this.responseText).res;
-}
-xhr.send()
 
 /*
 function update_info() {
@@ -113,6 +101,17 @@ var delete_from_cart = function(dish_id)
 
 var update_dropdown = function()
 {
+    let dishes_list
+    fetch('http://api.torianik.online:5000/get/dishes')
+    .then(function(response) {
+        console.log(response);
+        return response.json();
+    })
+        .then(
+    function(data) {
+    dishes_list = data.res;
+    console.log(dishes_list);
+    console.log(dishes_list);
     var cookie = {}
     try {
         cookie = JSON.parse(document.cookie);   
@@ -128,10 +127,12 @@ var update_dropdown = function()
     {
         dropdown.innerHTML += "Ваша корзина пустая";
     }
-    
+    console.log("azaza");
+    console.log(Object.keys(cookie).length);
+    document.getElementById("cart-size").innerHTML = Object.keys(cookie).length
+
     Object.keys(cookie).forEach(function(key) {
         console.log(key)
-        console.log(dishes_list)
         dropdown.innerHTML +=
         `
         <li class="header-cart-item">
@@ -154,9 +155,48 @@ var update_dropdown = function()
         summary += dishes_list[key - 1].cost * cookie[key]
     });
 
-    document.getElementById("cart-dropdown-summary").innerHTML = "Итог: ₴" + summary.toFixed(2)
-    document.getElementById("cart-size").innerHTML = Object.keys(cookie).length
-}
+    document.getElementById("cart-dropdown-summary").innerHTML = "Итог: ₴" + summary.toFixed(2);
+    //update for mobile^
+    dropdown = document.getElementById("cart-dropdown-main_");
+    dropdown.innerHTML = "";
+
+    var summary = 0.0
+
+    if(Object.keys(cookie).length == 0)
+    {
+        dropdown.innerHTML += "Ваша корзина пустая";
+    }
+    console.log("azaza");
+    console.log(Object.keys(cookie).length);
+    document.getElementById("cart-size_").innerHTML = Object.keys(cookie).length
+
+    Object.keys(cookie).forEach(function(key) {
+        console.log(key)
+        dropdown.innerHTML +=
+        `
+        <li class="header-cart-item">
+            <div class="header-cart-item-img" onclick="delete_from_cart(${key})">
+				<img src="${API_URL}/public/${dishes_list[key - 1].photo}" alt="IMG">
+			</div>
+
+			<div class="header-cart-item-txt">
+				<a href="#" class="header-cart-item-name">
+					${dishes_list[key - 1].title}
+				</a>
+
+                <span class="header-cart-item-info">
+                    ${cookie[key]} x ₴${dishes_list[key - 1].cost}
+                </span>
+			</div>
+		</li>
+        `
+
+        summary += dishes_list[key - 1].cost * cookie[key]
+    });
+
+    document.getElementById("cart-dropdown-summary_").innerHTML = "Итог: ₴" + summary.toFixed(2);
+    })
+    }
 
 window.onunload = function() {
     update_dropdown();

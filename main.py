@@ -90,7 +90,7 @@ def cart_handle():
     try:
         print(request.cookies)
         in_cart = loads(list(request.cookies.keys())[0])
-        in_cart_new = {}
+        in_cart_new = {}    
         for key in in_cart.keys():
             in_cart_new[int(key)] = in_cart[key]
         in_cart = in_cart_new

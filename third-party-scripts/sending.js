@@ -105,6 +105,6 @@ function send_() {
     xhr.send(data);
     console.log(1);
     alert("Ваш заказ принят")
-    //document.cookie = [];
-    ///document.location.href = "/";
+    document.cookie = [];
+    document.location.href = "/";
 }

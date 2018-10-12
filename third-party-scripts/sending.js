@@ -51,7 +51,7 @@ function send_() {
         alert("Введите улицу");
         return;
     }
-    var reg_street = /(^[а-яё]+$)/i;
+    var reg_street = /(^[а-яё 0-9-]+$)/i;
     if (reg_street.test(street) == false) {
         alert("Вы неправильно ввели улицу");
         return;
@@ -78,7 +78,7 @@ function send_() {
         alert("Введите имя");
         return;
     }
-    var reg_name = /^[а-яё]+/i;
+    var reg_name = /^[а-яёa-z ]+/i;
     if (reg_name.test(name) == false) {
         alert("Вы неправильно ввели имя");
         return;

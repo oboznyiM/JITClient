@@ -43,7 +43,7 @@ function send_() {
     var name = document.getElementById("name").value;
     var sel = document.getElementById("city");
     var city = sel.options[sel.selectedIndex].value;
-    if (city == "Выберите город...") {
+   /* if (city == "Выберите город...") {
         alert("Введите город");
         return;
     }
@@ -82,7 +82,7 @@ function send_() {
     if (reg_name.test(name) == false) {
         alert("Вы неправильно ввели имя");
         return;
-    }
+    }*/
     answer.address = city + ' ' + street + ' ' + house;
     answer.phone = mobile;
     answer.name = name;
@@ -105,6 +105,6 @@ function send_() {
     xhr.send(data);
     console.log(1);
     alert("Ваш заказ принят")
-    document.cookie = [];
-    document.location.href = "/";
+   // document.cookie = [];
+  //  document.location.href = "/";
 }

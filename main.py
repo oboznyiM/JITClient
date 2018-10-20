@@ -188,7 +188,7 @@ def product_handle():
     dish_page = []
     dish_page_sort = []
     dish_page_sort_back = []
-    DISH_PER_PAGE = len(dishes_list)
+    DISH_PER_PAGE = 100000
 
     start_page = (page - 1) * DISH_PER_PAGE
     i = 1

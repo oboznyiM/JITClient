@@ -137,4 +137,8 @@ var set_dish = function(dish_id)
     update_cart()
 }
 
+window.addEventListener("load", function()
+{
+    update_cart();
+})
 

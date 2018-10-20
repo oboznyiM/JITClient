@@ -198,6 +198,8 @@ var update_dropdown = function()
     })
     }
 
+
+
 window.onunload = function() {
     update_dropdown();
 }

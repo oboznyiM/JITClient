@@ -12,10 +12,6 @@ xhr.onload = function() {
 }
 xhr.send()
 
-window.addEventListener("load", function()
-{
-    update_cart();
-})
 
 function send_() {
     var cookie = {}

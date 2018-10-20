@@ -45,7 +45,9 @@ def third_party_scripts_handle(p):
 def get_dishes():
     resp = requests.get('http://api.torianik.online:5000/get/dishes')
     dishes = resp.json()["res"]
-
+    global dishes_list
+    global dishes_list_sort
+    global dishes_list_sort_back
     dishes_list = []
     dishes_list.append({})
     for i in range(len(dishes)):
@@ -180,6 +182,7 @@ def special_product_handle(tag):
 @app.route("/product")
 def product_handle():
     get_dishes()
+    print(dishes_list)
     try:
         page = int(request.args.get("page"))
     except Exception as _:

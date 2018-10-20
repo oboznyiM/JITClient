@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Контакты</title>
+	<title>Отследить заказ</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-----------------------M.O. Script----------------------------------------------------------------->
@@ -65,13 +65,45 @@
                         </li>
 
                         <li>
-                            <a href="contact">Контакты</a>
+                            <a href="#">Отследить заказ</a>
                         </li>
                     </ul>
                 </nav>
             </div>
 
             <!-- Header Icon -->
+            <div class="header-icons">
+
+                <div class="header-wrapicon2">
+                    <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+                    <span class="header-icons-noti" id="cart-size">0</span>
+
+                    <!-- Header cart noti -->
+                    <div class="header-cart header-dropdown">
+                        <ul class="header-cart-wrapitem" id="cart-dropdown-main">
+                        </ul>
+
+                        <div class="header-cart-total" id="cart-dropdown-summary">
+                        </div>
+
+                        <div class="header-cart-buttons">
+                            <div class="header-cart-wrapbtn">
+                                <!-- Button -->
+                                <a href="cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                    Корзина
+                                </a>
+                            </div>
+
+                            <div class="header-cart-wrapbtn">
+                                <!-- Button -->
+                                <a href="cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                    К Оплате
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -86,11 +118,41 @@
         <div class="btn-show-menu">
             <!-- Header Icon mobile -->
             <div class="header-icons-mobile">
-                <a href="#" class="header-wrapicon1 dis-block">
+               <!-- <a href="#" class="header-wrapicon1 dis-block">
                     <img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-                </a>
+                </a>-->
 
                 <span class="linedivide2"></span>
+
+                <div class="header-wrapicon2">
+                    <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+                    <span class="header-icons-noti" id = "cart-size_">0</span>
+
+                    <!-- Header cart noti -->
+                    <div class="header-cart header-dropdown">
+                        <ul class="header-cart-wrapitem" id="cart-dropdown-main_">      
+                        </ul>
+
+                        <div class="header-cart-total" id="cart-dropdown-summary_">
+                        </div>
+
+                        <div class="header-cart-buttons">
+                            <div class="header-cart-wrapbtn">
+                                <!-- Button -->
+                                <a href="cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                    К Корзине
+                                </a>
+                            </div>
+
+                            <div class="header-cart-wrapbtn">
+                                <!-- Button -->
+                                <a href="cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                    Расплатиться
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -102,7 +164,6 @@
     </div>
 
     <!-- Menu Mobile -->
-    
     <div class="wrap-side-menu" >
         <nav class="side-menu">
             <ul class="main-menu">
@@ -121,7 +182,7 @@
                 </li>
 
                 <li class="item-menu-mobile">
-                    <a href="contact">Контакты</a>
+                    <a href="contact">Отследить заказ</a>
                 </li>
             </ul>
         </nav>
@@ -129,10 +190,11 @@
 </header>
 
 
+
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-06.jpg);">
+	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" >
 		<h2 class="l-text2 t-center">
-            Контакты
+            Узнайте, где Ваш заказ сейчас!
 		</h2>
 	</section>
 
@@ -142,36 +204,25 @@
 			<div class="row">
 				<div class="col-md-6 p-b-30">
 					<div class="p-r-20 p-r-0-lg">
-						<div class="contact-map size21" id="google_map" data-map-x="40.614439" data-map-y="-73.926781" data-pin="images/icons/icon-position-map.png" data-scrollwhell="0" data-draggable="1"></div>
+						<div class="contact-map size21" id="google_map" data-map-x="70.614439" data-map-y="-73.926781" data-pin="images/icons/icon-position-map.png" data-scrollwhell="0" data-draggable="1"></div>
 					</div>
 				</div>
 
 				<div class="col-md-6 p-b-30">
 					<form class="leave-comment">
 						<h4 class="m-text26 p-b-36 p-t-15">
-							Send us your message
+							Введите номер вашего заказа
 						</h4>
 
 						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Full Name">
+							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" placeholder="Номер заказ">
 						</div>
-
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="phone-number" placeholder="Phone Number">
-						</div>
-
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="email" placeholder="Email Address">
-						</div>
-
-						<textarea class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" name="message" placeholder="Message"></textarea>
 
 						<div class="w-size25">
 							<!-- Button -->
 							<button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4" onclick = "send_()">
-								Send
-							</button>
-                            <input class = "flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4" width = "200" height = "200" type = "button" onClick = "send_()" text = "Senddddd"> 
+								Получить метоположение водителя
+                            </button> 
 						</div>
 					</form>
 				</div>

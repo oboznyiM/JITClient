@@ -40,8 +40,11 @@ document.getElementById("something").innerHTML = total;
 */
 }
 
-/*
+
 var set_dish = function(dish_id, number) {
+    number = Number(number);
+    number = max(number, 0);
+    number = Math.floor(number);
     try {
         cookie = JSON.parse(document.cookie);
     } catch (err) {
@@ -55,7 +58,7 @@ var set_dish = function(dish_id, number) {
     update_dropdown();
     window.location.reload();   
 }
-*/
+
 
 function update_cart()
 {

@@ -10,6 +10,10 @@ API_URL = "http://api.torianik.online:5000"
 
 app = Flask(__name__)
 
+dishes_list = []
+dishes_list_sort = []
+dishes_lis_sort_back = []
+
 @app.route("/vendor/<path:p>")
 def vendor_handle(p):
     return send_from_directory("vendor", p)
@@ -38,45 +42,31 @@ def images_handle(p):
 def third_party_scripts_handle(p):
     return send_from_directory("third-party-scripts", p)
 
-resp = requests.get('http://api.torianik.online:5000/get/dishes')
-dishes = resp.json()["res"]
+def get_dishes():
+    resp = requests.get('http://api.torianik.online:5000/get/dishes')
+    dishes = resp.json()["res"]
 
-dishes_list = []
-dishes_list.append({})
-for i in range(len(dishes)):
-    dishes_list.append(dishes[i])
+    dishes_list = []
+    dishes_list.append({})
+    for i in range(len(dishes)):
+        dishes_list.append(dishes[i])
 
-for i in range(len(dishes_list)):
-    dict2 = {"id": i}
-    dishes_list[i].update(dict2)
+    for i in range(len(dishes_list)):
+        dict2 = {"id": i}
+        dishes_list[i].update(dict2)
 
-dishes_list_sort = dishes_list.copy()
+    dishes_list_sort = dishes_list.copy()
 
-for j in range(len(dishes_list_sort)):
-    for i in range(len(dishes_list_sort) - 2):
-        if (dishes_list_sort[i + 1]["cost"] > dishes_list_sort[i + 2]["cost"]):
-            t = dishes_list_sort[i + 1]
-            dishes_list_sort[i + 1] = dishes_list_sort[i + 2]
-            dishes_list_sort[i + 2] = t
+    for j in range(len(dishes_list_sort)):
+        for i in range(len(dishes_list_sort) - 2):
+            if (dishes_list_sort[i + 1]["cost"] > dishes_list_sort[i + 2]["cost"]):
+                t = dishes_list_sort[i + 1]
+                dishes_list_sort[i + 1] = dishes_list_sort[i + 2]
+                dishes_list_sort[i + 2] = t
             
-dishes_list_sort_back = dishes_list.copy()
-for i in range(len(dishes_list) - 1):
-    dishes_list_sort_back[i + 1] = dishes_list_sort[len(dishes_list)-i-1]
-            
-dish_blocks = [
-    {
-        "title": "Первые блюда",
-        "label": "first_cources",
-        "dishes": [1, 2, 3, 4, 5]
-    },
-    {
-        "title": "Закуски",
-        "label": "main course",
-        "dishes": [5, 6, 7, 8, 9, 10]
-    },
-]
-
-favorites = [1, 2, 3, 4, 5]
+    dishes_list_sort_back = dishes_list.copy()
+    for i in range(len(dishes_list) - 1):
+        dishes_list_sort_back[i + 1] = dishes_list_sort[len(dishes_list)-i-1]
 
 with open("templates/components/header.html") as fin:
     header_html = Markup(fin.read())
@@ -86,6 +76,7 @@ with open("templates/components/footer.html") as fin:
 
 @app.route("/cart")
 def cart_handle():
+    get_dishes()
     in_cart = {}
     try:
         print(request.cookies)
@@ -115,6 +106,7 @@ def cart_handle():
         show_cart_icon=False)
 
 def special_product_handle(tag):
+    get_dishes()
     try:
         page = int(request.args.get("page"))
     except Exception as _:
@@ -187,6 +179,7 @@ def special_product_handle(tag):
 
 @app.route("/product")
 def product_handle():
+    get_dishes()
     try:
         page = int(request.args.get("page"))
     except Exception as _:

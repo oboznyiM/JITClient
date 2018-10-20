@@ -42,7 +42,7 @@ resp = requests.get('http://api.torianik.online:5000/get/dishes')
 dishes = resp.json()["res"]
 
 dishes_list = []
-dishes_list.append(dishes[0])
+dishes_list.append({})
 for i in range(len(dishes)):
     dishes_list.append(dishes[i])
 

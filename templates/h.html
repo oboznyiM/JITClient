@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 50%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <input id = "inp" type = "number"/>
+    <button value = "Узнать" onClick="recieve()">Go</button>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+    function updateMap(id) {
+        if (id <= 0)
+            return;
+            var marker = new google.maps.Marker({
+                position: {lat: -34.397, lng: 150.644},
+                map: map,
+                title: "Ваш водитель здесь",
+            })
+            
+            let XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+            orders = new XHR();
+            orders.open('GET', "http://api.torianik.online:5000/get/orders");
+            orders.onload = function() {
+               console.log(id);
+                all_orders = JSON.parse(this.responseText).res;
+                order = {}
+                all_orders.forEach(function(item) {
+                    if (item.id == id)
+                        order = item
+                })
+                coord = order.coordinats;
+                pos = coord.indexOf(",");
+                x = coord.substr(0, pos);
+                y = coord.substr(pos + 1, coord.length);
+                x = parseFloat(x);
+                y = parseFloat(y);
+                console.log(x);
+                console.log(y+x);
+                var marker = new google.maps.Marker({
+                        position: {lat: x, lng: y},
+                        map: map,
+                        title: "Адрес доставки",
+                    })
+            }
+            orders.send();
+  }    
+        function recieve() {
+        console.log("O ni");
+        id = Number(document.getElementById("inp").value);
+        console.log(id);
+            updateMap(id);
+}
+
+  
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhoLgP6V1iOA6NmnASdQEBsm6HET0oQPg&callback=initMap"
+    async defer></script>
+  </body>
+</html>

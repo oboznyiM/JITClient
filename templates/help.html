@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Отследить заказ</title>
+	<meta charset="UTF-8">
+<!--	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-----------------------M.O. Script----------------------------------------------------------------->
+	<script type="text/javascript" src="/third-party-scripts/sending.js"></script>
+    <script type="text/javascript" src="/third-party-scripts/order.js"></script>
+<!--===============================================================================================-->
+	<!--<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<!--===============================================================================================-->
+	<!--<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<!--<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<!--<link rel="stylesheet" type="text/css" href="fonts/themify/themify-icons.css">
+<!--===============================================================================================-->
+   <!-- <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<!--<link rel="stylesheet" type="text/css" href="fonts/elegant-font/html-css/style.css">
+<!--===============================================================================================-->
+	<!--<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+<!--	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<!--<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<!--<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<!--<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+<!--===============================================================================================-->
+	<!--<link rel="stylesheet" type="text/css" href="css/util.css">
+	
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+ <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #google_map {
+        height: 50%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+</head>
+<body>
+
+	<!-- Title Page -->
+	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" >
+		<h2 class="l-text2 t-center">
+            Узнайте, где Ваш заказ сейчас!
+		</h2>
+	</section><!-- content page -->
+	<section class="bgwhite p-t-66 p-b-60">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 p-b-30">
+					<div class="p-r-20 p-r-0-lg">
+						<div width = "500" height = "500" visible = "true" class="contact-map size21" id="google_map">ozoozoz</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 p-b-30">
+					<form class="leave-comment">
+						<h4 class="m-text26 p-b-36 p-t-15">
+							Введите номер вашего заказа
+						</h4>
+
+						<div class="bo4 of-hidden size15 m-b-20">
+							<input id = "id" class="sizefull s-text7 p-l-22 p-r-22" type="number" placeholder="Номер заказ">
+						</div>
+
+						<div class="w-size25">
+							<!-- Button -->
+							<button onClick='location.href="http://codehelper.ru/"'>
+								Узнать
+                            </button> 
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Footer -->
+	{{footer}}
+
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top bg0-hov" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="fa fa-angle-double-up" aria-hidden="true"></i>
+		</span>
+	</div>
+
+	<!-- Container Selection -->
+	<div id="dropDownSelect1"></div>
+	<div id="dropDownSelect2"></div>
+
+
+
+<!--===============================================================================================-->
+	<!--<script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+    <!--<script type="text/javascript" src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<!--<script type="text/javascript" src="vendor/bootstrap/js/popper.js"></script>
+	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<!--<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+	<script type="text/javascript">
+		$(".selection-1").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect1')
+		});
+
+		$(".selection-2").select2({
+			minimumResultsForSearch: 20,
+			dropdownParent: $('#dropDownSelect2')
+		});
+	</script>
+<!--===============================================================================================-->
+	<script>
+        var map;
+        var pos = {lat: 50.016448,  lng: 36.246667}
+        function iniMap() {
+            var opt = {
+                center: pos,
+                zoom: 10
+            }
+            map = new google.maps.Map(document.getElementById("google_map"), opt);
+        }
+        function recieve() {
+            location.href = "flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4";
+        }
+       
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhoLgP6V1iOA6NmnASdQEBsm6HET0oQPg&callback=iniMap" async defer></script>
+<!--===============================================================================================-->
+	
+
+</body>
+</html>

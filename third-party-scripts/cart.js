@@ -44,6 +44,7 @@ document.getElementById("something").innerHTML = total;
 var set_dish = function(dish_id, number) {
     number = Number(number);
     number = max(number, 0);
+    number = min(number, 1000);
     number = Math.floor(number);
     try {
         cookie = JSON.parse(document.cookie);
@@ -118,7 +119,7 @@ function increase_dish(dish_id, number)
     }
     update_cart()
 }
-
+/*
 var set_dish = function(dish_id) 
 {
     self_xml = document.getElementById("number_of" + dish_id)
@@ -135,7 +136,8 @@ var set_dish = function(dish_id)
         delete_dish(dish_id)
     }
     update_cart()
-}
+    document.location.reload()
+}*/
 
 window.addEventListener("load", function()
 {

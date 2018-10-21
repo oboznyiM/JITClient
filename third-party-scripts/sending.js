@@ -1,18 +1,3 @@
-
-var dishes_list = []
-
-var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
-
-var xhr = new XHR();
-
-xhr.open('GET', 'http://api.torianik.online:5000/get/dishes', true);
-
-xhr.onload = function() {
-    dishes_list = JSON.parse(this.responseText).res;
-}
-xhr.send()
-
-
 function send_() {
     var cookie = {}
     try {
@@ -28,7 +13,7 @@ function send_() {
     var order = [];
     Object.keys(cookie).forEach(function(key) {
         var dish = new Object;
-        dish.dish_id = parseInt(key);
+        dish.id = parseInt(key);
         dish.number = cookie[key];
         order.push(dish);
     });
@@ -39,7 +24,7 @@ function send_() {
     var name = document.getElementById("name").value;
     var sel = document.getElementById("city");
     var city = sel.options[sel.selectedIndex].value;
-   /* if (city == "Выберите город...") {
+    if (city == "Выберите город...") {
         alert("Введите город");
         return;
     }
@@ -78,7 +63,7 @@ function send_() {
     if (reg_name.test(name) == false) {
         alert("Вы неправильно ввели имя");
         return;
-    }*/
+    }
     answer.address = city + ' ' + street + ' ' + house;
     answer.phone = mobile;
     answer.name = name;
@@ -92,8 +77,10 @@ function send_() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             console.log("SERVER SENT A RESPONSE: " + xhr.responseText)
             var json = JSON.parse(xhr.responseText);
-            console.log(json.res.id);
-            alert(json.res.id);
+            console.log(json.res);
+            alert(json.res);
+            document.cookie = [];
+            document.location.href = "/";
         }
     };
     var data = JSON.stringify(answer);
@@ -101,6 +88,4 @@ function send_() {
     xhr.send(data);
     console.log(1);
     alert("Ваш заказ принят")
-   // document.cookie = [];
-  //  document.location.href = "/";
 }

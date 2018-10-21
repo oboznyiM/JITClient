@@ -205,7 +205,7 @@
 			<div class="row">
 				<div class="col-md-6 p-b-30">
 					<div class="p-r-20 p-r-0-lg">
-						<div class="contact-map size21" id="google_map" data-map-x="70.614439" data-map-y="-73.926781" data-pin="images/icons/icon-position-map.png" data-scrollwhell="0" data-draggable="1"></div>
+						<div visible = "true" class="contact-map size21" id="google_map">ozoozoz</div>
 					</div>
 				</div>
 
@@ -221,8 +221,8 @@
 
 						<div class="w-size25">
 							<!-- Button -->
-							<button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4" onclick = "recieve()"->
-								Получить метоположение водителя
+							<button class = "flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick = "recieve()">
+								Узнать
                             </button> 
 						</div>
 					</form>
@@ -270,8 +270,63 @@
 		});
 	</script>
 <!--===============================================================================================-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
-	<script src="js/map-custom.js"></script>
+	<script>
+        var map;
+        var pos = {lat: 50.016448,  lng: 36.246667}
+        function iniMap() {
+            var opt = {
+                center: pos,
+                zoom: 10
+            }
+            map = new google.maps.Map(document.getElementById("google_map"), opt);
+        }
+        function recieve() {
+            console.log("O ni");
+    var id = Number(document.getElementById("id").value);
+    window.location = "https://webformyself.com/geokodirovanie-ispolzuya-google-maps/";
+}
+
+  function updateMap(id) {
+        if (id == 0)
+            break;
+            var marker = new google.maps.Marker({
+                position: pos,
+                map: map,
+                title: "Ваш водитель здесь",
+            })
+            
+            let XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+            orders = new XHR();
+            orders.open('GET', "http://api.torianik.online:5000/get/orders");
+            orders.onload = function() {
+                all_orders = JSON.parse(this.responseText).res;
+                order = {}
+                all_orders.forEach(function(item) {
+                    if (item.id == id)
+                        order = item
+                })
+                coord = order.coordinats;
+                pos = coord.indexOf(",");
+                x = coord.substr(0, pos);
+                y = coord.substr(pos + 1, coord.length);
+                console.log(x);
+                console.log(y);
+                xhr = new XHR();
+                xhr.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=Дарвина 19+Харьков,+Харьковская,+Украина&key=AIzaSyBhoLgP6V1iOA6NmnASdQEBsm6HET0oQPg', false);
+                xhr.onload = function() {
+                    pos = JSON.parse(this.responseText).results[0].geometry.location;
+                    var marker = new google.maps.Marker({
+                        position: pos,
+                        map: map,
+                        title: "Адрес доставки",
+                    })
+                }
+                xhr.send()
+            }
+  }
+        
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhoLgP6V1iOA6NmnASdQEBsm6HET0oQPg&callback=iniMap" async defer></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 

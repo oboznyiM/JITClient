@@ -264,7 +264,7 @@ def index_handle():
 
 @app.route("/contact")
 def contact_handle():
-    return render_template("contact.html",
+    return render_template("h.html",
         header = header_html,
         footer = footer_html)
 

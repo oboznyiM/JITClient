@@ -24,21 +24,19 @@
     <button value = "Узнать" onClick="recieve()">Go</button>
     <script>
       var map;
+    var id;
+        var marker = -1;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
           zoom: 8
         });
       }
-    function updateMap(id) {
+    function updateMap() {
         if (id <= 0)
             return;
-            var marker = new google.maps.Marker({
-                position: {lat: -34.397, lng: 150.644},
-                map: map,
-                title: "Ваш водитель здесь",
-            })
-            
+            if (marker != -1)
+                marker.setMap(null);
             let XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
             orders = new XHR();
             orders.open('GET', "http://api.torianik.online:5000/get/orders");
@@ -58,20 +56,31 @@
                 y = parseFloat(y);
                 console.log(x);
                 console.log(y+x);
-                var marker = new google.maps.Marker({
+                var marker1 = new google.maps.Marker({
                         position: {lat: x, lng: y},
                         map: map,
                         title: "Адрес доставки",
                     })
+                
+                coord = order.driver_coordinats;
+                pos = coord.indexOf(",");
+                x = coord.substr(0, pos);
+                y = coord.substr(pos + 1, coord.length);
+                x = parseFloat(x);
+                y = parseFloat(y);
+                marker = new google.maps.Marker({
+                    position: {lat: x, lng: y},
+                    map: map,
+                    title: "Ваш водитель здесь",
+                })
             }
             orders.send();
   }    
         function recieve() {
-        console.log("O ni");
-        id = Number(document.getElementById("inp").value);
-        console.log(id);
-            updateMap(id);
-}
+            id = Number(document.getElementById("inp").value);
+            updateMap();
+            setInterval(updateMap, 1000);
+        }
 
   
     </script>

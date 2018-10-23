@@ -48,6 +48,14 @@
                     if (item.id == id)
                         order = item
                 })
+                if (order.status == 4) {
+                    alert("Заказ доставлен")
+                    location.href = "/";
+                }
+                if (order.status < 3) {
+                    alert("В поиске водителя")
+                    location.href = "/";
+                }
                 coord = order.coordinats;
                 pos = coord.indexOf(",");
                 x = coord.substr(0, pos);

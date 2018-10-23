@@ -43,9 +43,12 @@ document.getElementById("something").innerHTML = total;
 
 var set_dish = function(dish_id, number) {
     number = Number(number);
-    number = max(number, 0);
-    number = min(number, 1000);
+    if (number < 0)
+        number = 0;
+    if (number > 100)
+        number = 100;
     number = Math.floor(number);
+    console.log(number);
     try {
         cookie = JSON.parse(document.cookie);
     } catch (err) {

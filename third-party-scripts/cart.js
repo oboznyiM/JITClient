@@ -18,30 +18,14 @@ function get_dishes_list()
 
 var dishes_list = get_dishes_list()
 
-function update_info() {
-/* 
-    console.log("ozo");
-    console.log(dishes_list);
-    var total = 0;
-
-    var cookie = {}
-    try {
-        cookie = JSON.parse(document.cookie);   
-    } catch (err) {
-        null   
-    }
-    console.log(dishes_list);
-
-Object.keys(cookie).forEach(function(key) {
-    total += dishes_list[key - 1].cost * cookie[key];
-});
-console.log(total);
-document.getElementById("something").innerHTML = total;
-*/
-}
-
-/*
 var set_dish = function(dish_id, number) {
+    number = Number(number);
+    if (number < 0)
+        number = 0;
+    if (number > 100)
+        number = 100;
+    number = Math.floor(number);
+    console.log(number);
     try {
         cookie = JSON.parse(document.cookie);
     } catch (err) {
@@ -55,7 +39,6 @@ var set_dish = function(dish_id, number) {
     update_dropdown();
     window.location.reload();   
 }
-*/
 
 function update_cart()
 {
@@ -116,22 +99,15 @@ function increase_dish(dish_id, number)
     update_cart()
 }
 
-var set_dish = function(dish_id) 
+window.addEventListener("load", function()
 {
-    self_xml = document.getElementById("number_of" + dish_id)
-    try {
-        cookie = JSON.parse(document.cookie);
-    } catch (err) {
-        cookie = {};
-    }
-    cookie[dish_id] = Math.round(Math.max(0, Number(self_xml.value)));
-    document.getElementById("number_of" + dish_id).value = toString(cookie[dish_id])
-    document.cookie = JSON.stringify(cookie)
-    if(cookie[dish_id] == 0)
-    {
-        delete_dish(dish_id)
-    }
-    update_cart()
+    update_cart();
+})
+
+function initAutocomplete()
+{
+    autocomplete = new google.maps.places.Autocomplete(
+        (document.getElementById('address')),
+        {types: ['geocode']}
+    );
 }
-
-

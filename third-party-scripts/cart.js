@@ -65,7 +65,8 @@ function update_cart()
         id = dish_ids[i]
         sum += dishes_list[id - 1].cost * cookie[id]
         summaries[id].innerHTML = (dishes_list[id - 1].cost * cookie[id]).toFixed(2)
-        numbers_of[id].innerHTML = cookie[id]
+        //numbers_of[id].innerHTML = cookie[id]
+        numbers_of[id].value = cookie[id]
     }
 
     summary.innerHTML = sum.toFixed(2)

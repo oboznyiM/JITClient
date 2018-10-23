@@ -7,7 +7,7 @@ function send_() {
     }
     if(Object.keys(cookie).length == 0)
     {
-        alert("Ваша корзина пуста");
+        alert("Не удалось отправить заказ: Ваша корзина пуста.");
     }
     
     var order = [];
@@ -17,75 +17,58 @@ function send_() {
         dish.number = cookie[key];
         order.push(dish);
     });
-    var answer = new Object;
-    var street = document.getElementById("street").value;
-    var house = document.getElementById("house").value;
-    var mobile = document.getElementById("mobile").value;
+
+    var address = document.getElementById("address").value + ", " + document.getElementById("flat").value;
+    var phone = document.getElementById("phone").value;
     var name = document.getElementById("name").value;
-    var sel = document.getElementById("city");
-    var city = sel.options[sel.selectedIndex].value;
-    if (city == "Выберите город...") {
-        alert("Введите город");
+
+    if(address.split(',').length - 1 < 3)
+    {
+        alert("Не удалось отправить заказ: Адрес введен не корректно.");
         return;
     }
-    if (street == "") {
-        alert("Введите улицу");
+
+    if(phone.length != "(+38)-050-081-3720".length)
+    {
+        alert("Не удалось отправить заказ: Телефон введен не корректно.");
         return;
     }
-    var reg_street = /(^[а-яё 0-9-]+$)/i;
-    if (reg_street.test(street) == false) {
-        alert("Вы неправильно ввели улицу");
+    phone.replace(')', '');
+    phone.replace('(', '');
+    phone.replace('-', '');
+
+    if(name.length < 4)
+    {
+        alert("Не удалось отправить заказ: Имя введено не корректно.");
         return;
     }
-    if (house == "") {
-        alert("Введите дом");
-        return;
-    }
-    var reg_house = /^[0-9]+\s?-?\s?[а-яё]?$/i
-    if (reg_house.test(house) == false) {
-        alert("Вы неправильно ввели номер дома");
-        return;
-    }
-    if (mobile == "") {
-        alert("Введите мобильный телефон");
-        return;
-    }
-    var reg_mobile = /^\+?[0-9]+$/i
-    if (reg_mobile.test(mobile) == false) {
-        alert("Вы неправильно ввели номер телефона");
-        return;
-    }
-    if (name == "") {
-        alert("Введите имя");
-        return;
-    }
-    var reg_name = /^[а-яёa-z ]+/i;
-    if (reg_name.test(name) == false) {
-        alert("Вы неправильно ввели имя");
-        return;
-    }
-    answer.address = city + ' ' + street + ' ' + house;
-    answer.phone = mobile;
-    answer.name = name;
-    answer.dishes = order;
-    console.log(answer.address);
+
     var xhr = new XMLHttpRequest();
     var url = "http://api.torianik.online:5000/make_order";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log("SERVER SENT A RESPONSE: " + xhr.responseText)
             var json = JSON.parse(xhr.responseText);
-            console.log(json.res);
-            alert(json.res);
-            document.cookie = [];
-            document.location.href = "/";
+            status = json.status
+            res = json.res
+            if(status == 200)
+            {
+                alert("Операция успешна: Ваш заказ принят. Id вашего трекера: " + res);
+                document.cookie = [];
+                document.location.href = "/";
+            }
+            else
+            {   
+                alert("Не удалось отправить заказ: Ошибка на стороне сервер. Попробуйте оформить заказ позже.")
+            }
         }
     };
-    var data = JSON.stringify(answer);
-    console.log(data);
-    xhr.send(data);
-    console.log(1);
-    alert("Ваш заказ принят")
+    
+    xhr.send(JSON.stringify({
+        "address": address,
+        "phone": phone,
+        "name": name,
+        "dishes": order
+    }));
 }

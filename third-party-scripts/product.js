@@ -14,88 +14,78 @@ xhr.onload = function() {
 }
 xhr.send()
 
-
-function updatePagesBar()
-{
-    console.log("hello")
-    pages_bar = document.getElementById("pages-bar");
-    pages_bar.innerHTML = "";
-
-    pagesNumber = Math.ceil(Object.keys(dishes_list).length / DISHES_ON_PAGE);
-
-    for(var i = 1; i <= pagesNumber; i++)
-    {
-        mod = "";
-        if(currentPage == i)
-        {
-            mod += "active-pagination";
-        }
-
-        pages_bar.innerHTML += 
-        `
-        <a href="#" onclick="changePage(${i})" class="item-pagination flex-c-m trans-0-4 ${mod}">${i}</a>
-        `
+function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    var items = location.search.substr(1).split("&");
+    for (var index = 0; index < items.length; index++) {
+        tmp = items[index].split("=");
+        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
     }
+    return result;
 }
 
-function updateDishes(page)
+function load_without_tag()
 {
-    dishes_list_html = document.getElementById("dishes-list")
-    dishes_list_html.innerHTML = ""
-    startDish = (page - 1) * DISHES_ON_PAGE;
-    keys = Object.keys(dishes_list)
-
-    for(var i = 0; i < DISHES_ON_PAGE && i + startDish < keys.length; i++)
+    url = window.location.origin + window.location.pathname + "?";
+    sort_type = findGetParameter("sort_type");
+    if(sort_type)
     {
-        dish = dishes_list[keys[i + startDish]]
-        dishes_list_html.innerHTML += 
-        `
-        <div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-            <!-- Block2 -->
-            <div class="block2">
-                <div class="block2-img wrap-pic-w of-hidden pos-relative">
-                    <img src="http://api.torianik.online:5000/public/${dish.photo}" alt="IMG-PRODUCT">
-
-                    <div class="block2-overlay trans-0-4">
-                        <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-                            <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-                            <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-                        </a>
-
-                        <div class="block2-btn-addcart w-size1 trans-0-4">
-                            <!-- Button -->
-                            <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-                                Add to Cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="block2-txt p-t-20">
-                    <a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-                        ${dish.title}
-                    </a>
-
-                    <span class="block2-price m-text6 p-r-5">
-                        ₴${dish.cost}
-                    </span>
-                </div>
-            </div>
-        </div>
-        `
+        url += "sort_type=" + sort_type;
     }
+    window.location.href = url;
 }
 
-function changePage(newPage)
+function load_with_new_tag(new_tag)
 {
-    currentPage = newPage;
-    updatePagesBar();
-    updateDishes(currentPage);
+    url = window.location.origin + window.location.pathname + "?";
+    sort_type = findGetParameter("sort_type");
+    if(sort_type)
+    {
+        url += "sort_type=" + sort_type;
+    }
+    url += "&tag=" + new_tag;
+    window.location.href = url;
 }
 
-
-window.onload = function()
+function load_with_new_sort(new_sort_type)
 {
-    updatePagesBar();
-    updateDishes(currentPage);
+    url = window.location.origin + window.location.pathname + "?";
+    tag = findGetParameter("tag");
+    if(tag)
+    {
+        url += "tag=" + tag;
+    }
+
+    if(new_sort_type == 1)
+    {
+        url += "&sort_type=low_to_hight";
+    }
+    else if(new_sort_type == 2)
+    {
+        url += "&sort_type=hight_to_low"
+    }
+    window.location.href = url;
 }
+
+window.addEventListener("load", () => {
+    sort_type = findGetParameter("sort_type");
+    selectTitle = document.getElementById('select2-sort_type_chooser-container')
+    select = document.getElementById('sort_type_chooser')
+
+    if(sort_type=="low_to_hight")
+    {
+        selectTitle.innerHTML = "От дешевых к дорогим"
+        select.selectedIndex = 1
+    }
+    else if(sort_type=="hight_to_low")
+    {
+        selectTitle.innerHTML = "От дорогих к дешевым"
+        select.selectedIndex = 2
+    }
+    else
+    {
+        selectTitle.innerHTML = "Без сортировки"
+        select.selectedIndex = 0
+    }
+});

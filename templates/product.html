@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Меню</title>
+	<title>Product</title>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1"
-<!--==================================MY==OWN==SCRIPT==============================================-->
-	<script type="text/javascript" src="/third-party-scripts/header_cart.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="third-party-scripts/product.js"></script>
 <!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 <!--===============================================================================================-->
@@ -36,157 +35,8 @@
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
-	<!-- Header -->
-<header class="header1">
-    <!-- Header desktop -->
-    <div class="container-menu-header">
-
-        <div class="wrap_header">
-            <!-- Logo -->
-            <a href="/" class="logo">
-                <img src="images/icons/logo.png" alt="IMG-LOGO">
-            </a>
-
-            <!-- Menu -->
-            <div class="wrap_menu">
-                <nav class="menu">
-                    <ul class="main_menu">
-                        <li>
-                            <a href="product">Каталог</a>
-                        </li>
-
-                        <li>
-                            <a href="cart">Корзина</a>
-                        </li>
-
-                        <li>
-                            <a href="about">О Нас</a>
-                        </li>
-
-                        <li>
-                            <a href="contact">Контакты</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-            <!-- Header Icon -->
-            <div class="header-icons">
-
-                <div class="header-wrapicon2">
-                    <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-                    <span class="header-icons-noti" id="cart-size">0</span>
-
-                    <!-- Header cart noti -->
-                    <div class="header-cart header-dropdown">
-                        <ul class="header-cart-wrapitem" id="cart-dropdown-main">
-                        </ul>
-
-                        <div class="header-cart-total" id="cart-dropdown-summary">
-                        </div>
-
-                        <div class="header-cart-buttons">
-                            <div class="header-cart-wrapbtn">
-                                <!-- Button -->
-                                <a href="cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                    Корзина
-                                </a>
-                            </div>
-
-                            <div class="header-cart-wrapbtn">
-                                <!-- Button -->
-                                <a href="cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                    К Оплате
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Header Mobile -->
-    <div class="wrap_header_mobile">
-        <!-- Logo moblie -->
-        <a href="/" class="logo-mobile">
-            <img src="images/icons/logo.png" alt="IMG-LOGO">
-        </a>
-
-        <!-- Button show menu -->
-        <div class="btn-show-menu">
-            <!-- Header Icon mobile -->
-            <div class="header-icons-mobile">
-                <a href="#" class="header-wrapicon1 dis-block">
-                    <img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-                </a>
-
-                <span class="linedivide2"></span>
-
-                <div class="header-wrapicon2">
-                    <img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-                    <span class="header-icons-noti">0</span>
-
-                    <!-- Header cart noti -->
-                    <div class="header-cart header-dropdown">
-                        <ul class="header-cart-wrapitem" id="cart-dropdown-main_">      
-                        </ul>
-
-                        <div class="header-cart-total" id="cart-dropdown-summary_">
-                        </div>
-
-                        <div class="header-cart-buttons">
-                            <div class="header-cart-wrapbtn">
-                                <!-- Button -->
-                                <a href="cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                    К Корзине
-                                </a>
-                            </div>
-
-                            <div class="header-cart-wrapbtn">
-                                <!-- Button -->
-                                <a href="cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                                    Расплатиться
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-                <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
-                </span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Menu Mobile -->
-    <div class="wrap-side-menu" >
-        <nav class="side-menu">
-            <ul class="main-menu">
-
-                
-                <li class="item-menu-mobile">
-                    <a href="product">Каталог</a>
-                </li>
-
-                <li class="item-menu-mobile">
-                    <a href="cart">Корзина</a>
-                </li>
-
-                <li class="item-menu-mobile">
-                    <a href="about">О нас</a>
-                </li>
-
-                <li class="item-menu-mobile">
-                    <a href="contact">Контакты</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<!-- Header -->
+{{ header }}
 	<!-- Content page -->
 	<section class="bgwhite p-t-55 p-b-65">
 		<div class="container">
@@ -200,115 +50,92 @@
 
 						<ul class="p-b-54">
 							<li class="p-t-4">
-								<a href="#" class="s-text13 active1">
-                                    <b>Меню</b>
+								<a href="#" onclick="load_without_tag();" class="s-text13 active1">
+									Все
 								</a>
 							</li>
 
 							<li class="p-t-4">
-								<a href="/first_courses" class="s-text13">
+								<a href="#" onclick="load_with_new_tag('first_course');" class="s-text13">
 									Первые блюда
 								</a>
 							</li>
 
 							<li class="p-t-4">
-								<a href="/main_courses" class="s-text13">
-									Основные блюда
+								<a href="#" onclick="load_with_new_tag('main_course');" class="s-text13">
+									Вторые блюда
 								</a>
 							</li>
 
 							<li class="p-t-4">
-								<a href="/salads" class="s-text13">
+								<a href="#" onclick="load_with_new_tag('salad');" class="s-text13">
 									Салаты
 								</a>
 							</li>
-                            
-                            <li class="p-t-4">
-								<a href="/snacks" class="s-text13">
-									Закуски
-								</a>
-							</li>
-                                
+
 							<li class="p-t-4">
-								<a href="/desserts" class="s-text13">
-									Дессерты
+								<a href="#" onclick="load_with_new_tag('dessert');" class="s-text13">
+									Десерты
 								</a>
 							</li>
-                            <li class="p-t-4">
-								<a href="/non_beverages" class="s-text13">
+
+							<li class="p-t-4">
+								<a href="#" onclick="load_with_new_tag('nonalcoholic_beverage');" class="s-text13">
 									Безалкогольные напитки
 								</a>
 							</li>
-                            <li class="p-t-4">
-								<a href="/alc_beverages" class="s-text13">
-									Алкогольные напитки
-								</a>
-							</li>
-                            
-                            
 						</ul>
-
-						
 					</div>
 				</div>
 
 				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
-					<!--  -->
 					<div class="flex-sb-m flex-w p-b-35">
 						<div class="flex-w">
 							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-								<form action="">
-                                    <fieldset>
-                                        <select class="selection-2" name="sorting" onchange="document.location=this.options[this.selectedIndex].value">
-                                            <option value = "/product?type_sort=2">Default Sorting</option>
-                                            <option value = "/product">Popularity</option>
-                                            <option value = "/product?type_sort=2">Price: low to high</option>
-									        <option value = "/product?type_sort=3">Price: high to low</option>
-                                        </select>
-                                    </fieldset>
-                                </form>
-                            </div>
+								<select class="selection-2" name="sorting" id="sort_type_chooser" onchange="load_with_new_sort(document.getElementById('sort_type_chooser').value);">
+									<option value=0>Без сортировки</option>
+									<option value=1>От дешевых к дорогим</option>
+									<option value=2>От дорогих к дешевым</option>
+								</select>
+							</div>
 						</div>
 					</div>
 
 					<!-- Product -->
-					<div class="row" id="dishes-list">
-						{% for dish in dish_page %}
-							<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-								<!-- Block2 -->
-								<div class="block2">
-									<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-										<img src="{{api_url}}/public/{{dish.photo}}" alt="IMG-PRODUCT">
-	
-										<div class="block2-overlay trans-0-4">
-											<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-												<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-												<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-											</a>
-	
-											<div class="block2-btn-addcart w-size1 trans-0-4">
-												<!-- Button -->
-												
-                                                <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="add_to_cart({{dish.id}})">
-												    Добавить в корзину
-												</button>
-											</div>
+					<div class="row">
+						{% for dish in dishes %}
+						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+							<!-- Block2 -->
+							<div class="block2">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative">
+									<img src="{{ api_url }}/public/{{ dish.photo }}" alt="IMG-PRODUCT">
+
+									<div class="block2-overlay trans-0-4">
+										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+										</a>
+
+										<div class="block2-btn-addcart w-size1 trans-0-4">
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="add_to_cart({{ dish.id }});">
+												Добавить в корзину
+											</button>
 										</div>
 									</div>
-	
-									<div class="block2-txt p-t-20">
-										<a href="product-detail" class="block2-name dis-block s-text3 p-b-5">
-											{{ dish.title }}
-										</a>
-	
-										<span class="block2-price m-text6 p-r-5">
-											{{ dish.cost }}
-										</span>
-									</div>
+								</div>
+
+								<div class="block2-txt p-t-20">
+									<a class="block2-name dis-block s-text3 p-b-5">
+										{{ dish.title }}
+									</a>
+
+									<span class="block2-price m-text6 p-r-5">
+										{{ dish.cost }} ₴
+									</span>
 								</div>
 							</div>
+						</div>
 						{% endfor %}
-					</div>
 				</div>
 			</div>
 		</div>
@@ -326,7 +153,6 @@
 	<!-- Container Selection -->
 	<div id="dropDownSelect1"></div>
 	<div id="dropDownSelect2"></div>
-
 
 
 <!--===============================================================================================-->

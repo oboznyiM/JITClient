@@ -1,13 +1,10 @@
-const DISHES_ON_PAGE = 15
-var currentPage = 1
-
 var dishes_list = []
 
 var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
 
 var xhr = new XHR();
 
-xhr.open('GET', 'http://api.torianik.online:5000/get/dishes', true);
+xhr.open('GET', API_URL + '/get/dishes', true);
 
 xhr.onload = function() {
     dishes_list = JSON.parse(this.responseText).res;

@@ -1,14 +1,10 @@
 // Script to handle GUI in cart.html page
-
-API_URL = "http://api.torianik.online:5000"
-
-
 function get_dishes_list()
 {
     let dishes_list = []
     let XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
     xhr = new XHR();
-    xhr.open('GET', 'http://api.torianik.online:5000/get/dishes', false);
+    xhr.open('GET', API_URL + '/get/dishes', false);
     xhr.onload = function() {
         dishes_list = JSON.parse(this.responseText).res;
     }

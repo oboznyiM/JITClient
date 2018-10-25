@@ -1,14 +1,12 @@
-from flask import render_template, Flask, send_from_directory, request, make_response, Markup
 import os
 import requests
 from json import dumps, loads
 from math import ceil
-
-# ========= CONFIG ========= #
-API_URL = "http://api.torianik.online:5000"
+from flask import render_template, Flask, send_from_directory, request, make_response, Markup
+from config import Config
 
 def load_dishes():
-    dishes_request = requests.get("{}/get/dishes".format(API_URL))
+    dishes_request = requests.get("{}/get/dishes".format(Config.API_URL))
     return loads(dishes_request.text)["res"]
 
 app = Flask(__name__)
@@ -44,6 +42,9 @@ def third_party_scripts_handle(p):
 with open("templates/components/header.html") as fin:
     header_html = Markup(fin.read())
 
+with open("templates/components/cart_header.html") as fin:
+    cart_header_html = Markup(fin.read())
+
 with open("templates/components/footer.html") as fin:
     footer_html = Markup(fin.read())
 
@@ -69,10 +70,10 @@ def cart_handle():
             pass
 
     return render_template("cart.html",
-        api_url=API_URL,
+        api_url=Config.API_URL,
         in_cart_dishes=in_cart,
         dishes_list=dishes_list,
-        header=header_html,
+        header=cart_header_html,
         footer=footer_html,
         show_cart_icon=False)
 
@@ -96,7 +97,7 @@ def product_handle():
     return render_template(
         "product.html",
         dishes=dishes,
-        api_url=API_URL,
+        api_url=Config.API_URL,
         header=header_html,
         footer=footer_html)
 
@@ -104,6 +105,7 @@ def product_handle():
 def track_handle():
     return render_template(
         "track.html",
+        api_url=Config.API_URL,
         header=header_html,
         footer=footer_html
     )

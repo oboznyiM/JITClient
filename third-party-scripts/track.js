@@ -20,7 +20,7 @@ function checkIfTokenValid(token)
         return false;
     }
     xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://torianik.online:5000/track/" + token, false);
+    xhr.open("GET", API_URL + "/track/" + token, false);
     xhr.send()
     response = JSON.parse(xhr.responseText);
     console.log(response)
@@ -34,7 +34,7 @@ function trackOrder(token)
         return;
     }
     xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://torianik.online:5000/track/" + token, true);
+    xhr.open("GET", API_URL + "/track/" + token, true);
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -64,7 +64,7 @@ function trackOrder(token)
                 driver_marker = new google.maps.Marker({
                     position: new google.maps.LatLng(driverCoords[0], driverCoords[1]),
                     title: 'Водитель',
-                    icon: 'http://localhost/images/car.png'
+                    icon: 'images/car.png'
                   });
 
                 driver_marker.setMap(map);

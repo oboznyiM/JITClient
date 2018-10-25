@@ -1,4 +1,6 @@
 function send_() {
+    console.log(API_URL)
+
     var cookie = {}
     try {
         cookie = JSON.parse(document.cookie);   
@@ -44,7 +46,7 @@ function send_() {
     }
 
     var xhr = new XMLHttpRequest();
-    var url = "http://api.torianik.online:5000/make_order";
+    var url = API_URL + "/make_order";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function () {

@@ -15,71 +15,31 @@ app = Flask(__name__)
 
 @app.route("/vendor/<path:p>")
 def vendor_handle(p):
-    return send_from_directory("vendor", p)
+    return send_from_directory("design/vendor", p)
 
 @app.route("/css/<path:p>")
 def css_handle(p):
-    return send_from_directory("css", p)
+    return send_from_directory("design/css", p)
 
 @app.route("/js/<path:p>")
 def js_handle(p):
-    return send_from_directory("js", p)
+    return send_from_directory("design/js", p)
 
 @app.route("/include/<path:p>")
 def include_handle(p):
-    return send_from_directory("include", p)
+    return send_from_directory("design/include", p)
 
 @app.route("/fonts/<path:p>")
 def fonts_handle(p):
-    return send_from_directory("fonts", p)
+    return send_from_directory("design/fonts", p)
 
 @app.route("/images/<path:p>")
 def images_handle(p):
-    return send_from_directory("images", p)
+    return send_from_directory("design/images", p)
 
 @app.route("/third-party-scripts/<path:p>")
 def third_party_scripts_handle(p):
     return send_from_directory("third-party-scripts", p)
-
-resp = requests.get('http://api.torianik.online:5000/get/dishes')
-dishes = resp.json()["res"]
-
-dishes_list = []
-dishes_list.append(dishes[0])
-for i in range(len(dishes)):
-    dishes_list.append(dishes[i])
-
-for i in range(len(dishes_list)):
-    dict2 = {"id": i}
-    dishes_list[i].update(dict2)
-
-dishes_list_sort = dishes_list.copy()
-
-for j in range(len(dishes_list_sort)):
-    for i in range(len(dishes_list_sort) - 2):
-        if (dishes_list_sort[i + 1]["cost"] > dishes_list_sort[i + 2]["cost"]):
-            t = dishes_list_sort[i + 1]
-            dishes_list_sort[i + 1] = dishes_list_sort[i + 2]
-            dishes_list_sort[i + 2] = t
-            
-dishes_list_sort_back = dishes_list.copy()
-for i in range(len(dishes_list) - 1):
-    dishes_list_sort_back[i + 1] = dishes_list_sort[len(dishes_list)-i-1]
-            
-dish_blocks = [
-    {
-        "title": "Первые блюда",
-        "label": "first_cources",
-        "dishes": [1, 2, 3, 4, 5]
-    },
-    {
-        "title": "Закуски",
-        "label": "main course",
-        "dishes": [5, 6, 7, 8, 9, 10]
-    },
-]
-
-favorites = [1, 2, 3, 4, 5]
 
 with open("templates/components/header.html") as fin:
     header_html = Markup(fin.read())
@@ -89,9 +49,10 @@ with open("templates/components/footer.html") as fin:
 
 @app.route("/cart")
 def cart_handle():
+    dishes_list = load_dishes()
+
     in_cart = {}
     try:
-        print(request.cookies)
         in_cart = loads(list(request.cookies.keys())[0])
         in_cart_new = {}
         for key in in_cart.keys():
@@ -107,8 +68,6 @@ def cart_handle():
         except Exception as _:
             pass
 
-    
-    print(in_cart)
     return render_template("cart.html",
         api_url=API_URL,
         in_cart_dishes=in_cart,
@@ -141,6 +100,15 @@ def product_handle():
         header=header_html,
         footer=footer_html)
 
+@app.route("/track")
+def track_handle():
+    return render_template(
+        "track.html",
+        header=header_html,
+        footer=footer_html
+    )
+
+
 @app.route("/")
 def index_handle():
     return product_handle()
@@ -153,4 +121,5 @@ def contact_handle():
         footer = footer_html)
 """
 
-app.run(host="0.0.0.0", port=80, debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=80, debug=True)

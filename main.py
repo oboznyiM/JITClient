@@ -9,6 +9,16 @@ def load_dishes():
     dishes_request = requests.get("{}/get/dishes".format(Config.API_URL))
     return loads(dishes_request.text)["res"]
 
+def get_ingredient_title_map():
+    ingredients_request = requests.get("{}/get/ingredients".format(Config.API_URL))
+    ingrediets = loads(ingredients_request.text)["res"]
+
+    ingredient_map = {}
+    for ingredient in ingrediets:
+        ingredient_map[ingredient.get("id")] = ingredient.get("title")
+
+    return ingredient_map
+
 app = Flask(__name__)
 
 @app.route("/vendor/<path:p>")
@@ -114,6 +124,31 @@ def track_handle():
 @app.route("/")
 def index_handle():
     return product_handle()
+
+
+@app.route("/product_info")
+def product_info_handle():
+
+    try:
+        required_id = int(request.args.get("id"))
+    except:
+        return "<h1>Мужские гинеталии</h1>"
+
+    dishes_list = load_dishes()
+
+    try:
+        required_dish = list(filter(lambda dish : dish["id"] == required_id, dishes_list))[0]
+    except:
+        return "<h1>Женские гинеталии</h1>"
+
+    return render_template(
+        "productinfo.html",
+        header = header_html,
+        footer = footer_html,
+        dish = required_dish,
+        ingredients = get_ingredient_title_map(),
+        api_url = Config.API_URL
+    )
 
 """
 @app.route("/contact")

@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Product</title>
+	<title>Product Detail</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<script>
 		var API_URL = "{{ api_url }}"; 
 	</script>
-
-	<script type="text/javascript" src="third-party-scripts/product.js"></script>
 <!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 <!--===============================================================================================-->
@@ -33,118 +30,72 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/noui/nouislider.min.css">
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
-<!-- Header -->
-{{ header }}
-	<!-- Content page -->
-	<section class="bgwhite p-t-55 p-b-65">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
-					<div class="leftbar p-r-20 p-r-0-sm">
-						<!--  -->
-						<h4 class="m-text14 p-b-7">
-							Категории
-						</h4>
 
-						<ul class="p-b-54">
-							<li class="p-t-4">
-								<a href="#" onclick="load_without_tag();" class="s-text13 active1">
-									Все
-								</a>
-							</li>
+	{{ header }}
 
-							<li class="p-t-4">
-								<a href="#" onclick="load_with_new_tag('first_course');" class="s-text13">
-									Первые блюда
-								</a>
-							</li>
+	<!-- Product Detail -->
+	<div class="container bgwhite p-t-35 p-b-80">
+		<div class="flex-w flex-sb">
+			<div class="w-size13 p-t-30 respon5">
+				<div class="wrap-slick3 flex-sb flex-w">
+					<div class="wrap-slick3-dots">
+						
+					</div>
 
-							<li class="p-t-4">
-								<a href="#" onclick="load_with_new_tag('main_course');" class="s-text13">
-									Вторые блюда
-								</a>
-							</li>
+					<div class="wrap-pic-w">
+						<img src="{{ api_url }}/public/{{ dish.photo }}" alt="IMG-PRODUCT">
+					</div>
+				</div>
+			</div>
 
-							<li class="p-t-4">
-								<a href="#" onclick="load_with_new_tag('salad');" class="s-text13">
-									Салаты
-								</a>
-							</li>
+			<div class="w-size14 p-t-30 respon5">
+				<h4 class="product-detail-name m-text16 p-b-13">
+					{{ dish.title }}
+				</h4>
 
-							<li class="p-t-4">
-								<a href="#" onclick="load_with_new_tag('dessert');" class="s-text13">
-									Десерты
-								</a>
-							</li>
+				<span class="m-text17">
+					{{ dish.cost }} ₴
+				</span>
 
-							<li class="p-t-4">
-								<a href="#" onclick="load_with_new_tag('nonalcoholic_beverage');" class="s-text13">
-									Безалкогольные напитки
-								</a>
-							</li>
-						</ul>
+				<!--  -->
+				<div class="wrap-dropdown-content bo6 p-t-15 p-b-14 active-dropdown-content">
+					<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
+						Описание
+						<i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
+						<i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
+					</h5>
+
+					<div class="dropdown-content dis-none p-t-15 p-b-23">
+						<p class="s-text8">
+							{{ dish.get("describe") }}
+						</p>
 					</div>
 				</div>
 
-				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
-					<div class="flex-sb-m flex-w p-b-35">
-						<div class="flex-w">
-							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-								<select class="selection-2" name="sorting" id="sort_type_chooser" onchange="load_with_new_sort(document.getElementById('sort_type_chooser').value);">
-									<option value=0>Без сортировки</option>
-									<option value=1>От дешевых к дорогим</option>
-									<option value=2>От дорогих к дешевым</option>
-								</select>
-							</div>
-						</div>
+				<!--  -->
+				<div class="wrap-dropdown-content bo6 p-t-15 p-b-14 active-dropdown-content">
+					<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
+						Ингредиенты
+						<i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
+						<i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
+					</h5>
+
+					<div class="dropdown-content dis-none p-t-15 p-b-23">
+						<p class="s-text8">
+							{% for ingredient in dish["ingredients"] %}
+							<h6 class="s-text8">* {{ ingredients[ingredient["id"]] }} ({{ingredient["mass"]}}г)</h6>
+							{% endfor %}
+						</p>
 					</div>
-
-					<!-- Product -->
-					<div class="row">
-						{% for dish in dishes %}
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- Block2 -->
-							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative">
-									<img src="{{ api_url }}/public/{{ dish.photo }}" alt="IMG-PRODUCT">
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="add_to_cart({{ dish.id }});">
-												Добавить в корзину
-											</button>
-										</div>
-									</div>
-								</div>
-
-								<div class="block2-txt p-t-20">
-									<a href="/product_info?id={{ dish.id }}" class="block2-name dis-block s-text3 p-b-5">
-										{{ dish.title }}
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										{{ dish.cost }} ₴
-									</span>
-								</div>
-							</div>
-						</div>
-						{% endfor %}
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
 
 	{{ footer }}
 
@@ -158,6 +109,7 @@
 	<!-- Container Selection -->
 	<div id="dropDownSelect1"></div>
 	<div id="dropDownSelect2"></div>
+
 
 
 <!--===============================================================================================-->
@@ -181,9 +133,6 @@
 		});
 	</script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/daterangepicker/moment.min.js"></script>
-	<script type="text/javascript" src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/slick/slick.min.js"></script>
 	<script type="text/javascript" src="js/slick-custom.js"></script>
 <!--===============================================================================================-->
@@ -202,33 +151,15 @@
 				swal(nameProduct, "is added to wishlist !", "success");
 			});
 		});
+
+		$('.btn-addcart-product-detail').each(function(){
+			var nameProduct = $('.product-detail-name').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+			});
+		});
 	</script>
 
-<!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/noui/nouislider.min.js"></script>
-	<script type="text/javascript">
-		/*[ No ui ]
-	    ===========================================================*/
-	    var filterBar = document.getElementById('filter-bar');
-
-	    noUiSlider.create(filterBar, {
-	        start: [ 50, 200 ],
-	        connect: true,
-	        range: {
-	            'min': 50,
-	            'max': 200
-	        }
-	    });
-
-	    var skipValues = [
-	    document.getElementById('value-lower'),
-	    document.getElementById('value-upper')
-	    ];
-
-	    filterBar.noUiSlider.on('update', function( values, handle ) {
-	        skipValues[handle].innerHTML = Math.round(values[handle]) ;
-	    });
-	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 

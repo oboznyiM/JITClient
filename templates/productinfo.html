@@ -80,7 +80,7 @@
 				<!--  -->
 				<div class="wrap-dropdown-content bo6 p-t-15 p-b-14 active-dropdown-content">
 					<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
-						Ингредиенты
+						Ингредиенты и каллорийность
 						<i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
 						<i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
 					</h5>
@@ -90,6 +90,10 @@
 							{% for ingredient in dish["ingredients"] %}
 							<h6 class="s-text8">* {{ ingredients[ingredient["id"]] }} ({{ingredient["mass"]}}г)</h6>
 							{% endfor %}
+						</p>
+						<br>
+						<p class="s-text8">
+							{{ dish["calories"] }} Килокаллорий
 						</p>
 					</div>
 				</div>
@@ -109,8 +113,6 @@
 	<!-- Container Selection -->
 	<div id="dropDownSelect1"></div>
 	<div id="dropDownSelect2"></div>
-
-
 
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>

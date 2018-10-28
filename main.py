@@ -9,6 +9,14 @@ def load_dishes():
     dishes_request = requests.get("{}/get/dishes".format(Config.API_URL))
     return loads(dishes_request.text)["res"]
 
+def get_dish_id_map():
+    dishes = load_dishes()
+
+    dishes_map = {}
+    for dish in dishes:
+        dishes_map[dish.get("id")] = dish
+    return dishes_map
+
 def get_ingredient_title_map():
     ingredients_request = requests.get("{}/get/ingredients".format(Config.API_URL))
     ingrediets = loads(ingredients_request.text)["res"]
@@ -82,7 +90,7 @@ def cart_handle():
     return render_template("cart.html",
         api_url=Config.API_URL,
         in_cart_dishes=in_cart,
-        dishes_list=dishes_list,
+        dishes_list=get_dish_id_map(),
         header=cart_header_html,
         footer=footer_html,
         show_cart_icon=False)

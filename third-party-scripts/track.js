@@ -2,6 +2,8 @@ map = null
 driver_marker = null
 target_marker = null
 
+var parseCoords = (coords) => coords.split(',').map(v => parseFloat(v.replace(' ', '')));
+
 function loadMap()
 {
     var mapProp= {
@@ -9,9 +11,26 @@ function loadMap()
         zoom: 13,
     };
     map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-}
 
-var parseCoords = (coords) => coords.split(',').map(v => parseFloat(v.replace(' ', '')));
+
+    xhr = new XMLHttpRequest();
+    xhr.open("GET", API_URL + "/get/cafes", false);
+    xhr.send();
+
+    response = JSON.parse(xhr.responseText).res;
+    response.forEach((el) => {
+        console.log(123)
+        coords = parseCoords(el.coordinates);
+
+        cafe_marker = new google.maps.Marker({
+            position: new google.maps.LatLng(coords[0], coords[1]),
+            title: el.title,
+            icon: 'images/cafe.png'
+          });
+
+        cafe_marker.setMap(map);
+    });
+}
 
 function checkIfTokenValid(token)
 {

@@ -19,7 +19,6 @@ function loadMap()
 
     response = JSON.parse(xhr.responseText).res;
     response.forEach((el) => {
-        console.log(123)
         coords = parseCoords(el.coordinates);
 
         cafe_marker = new google.maps.Marker({
@@ -62,6 +61,7 @@ function trackOrder(token)
             driverCoords = parseCoords(response.res["driver-coords"]);
             targetCoords = parseCoords(response.res["target-coords"]);
             orderStatus = parseInt(response.res["status"])
+            delivering_time_val = parseInt(response.res["delivering_waiting_time"])
 
             if(orderStatus == 3)
             {
@@ -110,6 +110,18 @@ function trackOrder(token)
             {
                 statusField.innerHTML = "Статус заказа: <font color='#f441cd'>Доставлено<font>"
             }
+
+            delivering_time = document.getElementById("delivering_time")
+            if(orderStatus == 3)
+            {
+                delivering_time.setAttribute("style", "")
+                delivering_time.innerHTML = `Ореинтировочное время доставки: ${delivering_time_val} минут`
+            }
+            else
+            {
+                delivering_time.setAttribute("style", "position: absolute; visibility: hidden;")
+                delivering_time.innerHTML = `Ореинтировочное время доставки: Неопределенно`
+            }
         }
     };
 
@@ -138,7 +150,7 @@ window.addEventListener("load", () => {
             
             track_timer = setInterval(() => {
                 trackOrder(token);
-            }, 500);
+            }, 2000);
         }
         else
         {

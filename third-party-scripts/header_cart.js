@@ -1,3 +1,5 @@
+console.log("HEADER CART MODULE IS ENABLE!")
+
 var dishes_list = []
 
 var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;

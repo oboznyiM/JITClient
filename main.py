@@ -158,13 +158,14 @@ def product_info_handle():
         api_url = Config.API_URL
     )
 
-"""
-@app.route("/contact")
+
+@app.route("/about")
 def contact_handle():
-    return render_template("contact.html",
+    return render_template("about.html",
         header = header_html,
-        footer = footer_html)
-"""
+        footer = footer_html,
+        api_url=Config.API_URL)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)
